@@ -91,13 +91,16 @@ let totalCorrect = " ";
 let totalWrong = " ";
 
 //Hide questions and time
-// function hideGame() {
-//     $(".quiz").hide()
-// }
+function hideGame() {
+    $(".quiz").hide()
+}
+hideGame();
+
 //Create a function that when onclick on start button - questions are displayed
 $("#clickStart").on("click",function(){
     $(this).hide();
     $(".startImages").hide();
+    $(".quiz").show()
 });
 
 
@@ -107,8 +110,11 @@ function gameStart() {
     for (i = 0; i < myQuestions.length; i++) {
     
     console.log(myQuestions);
-    $(".quiz").append("<p>" + myQuestions[i].question + "</p>");
+    $(".quiz").append("<ol><li>" + myQuestions[i].question + "</li></ol>");
+    
     }
+
+    //Three questions - why is my array not displaying sequential numbering? Why can I not specify a specific question and display it one at a time? i @ 0 always displays all for questions instead of the one at that specific position, why?
 }
 gameStart();
 

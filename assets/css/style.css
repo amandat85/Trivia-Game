@@ -5,8 +5,7 @@
 
 body {
     background-image: url("../../assets/images/rainbow.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: 100%;
     position: relative;
     width: 100%;
     font-size: 16pt;
@@ -16,6 +15,10 @@ body {
 h1 {
     font-family: 'Luckiest Guy', cursive;
     font-size: 60pt;
+}
+
+.alignment {
+    text-align: left;
 }
 
 .pageWrapper {
