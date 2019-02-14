@@ -1,4 +1,4 @@
-//Start screen - action on "start button"
+$(document).ready(function() {
 
 //Variables
 //To hold questions
@@ -90,16 +90,35 @@ let totalCorrect = " ";
 //To hold total wrong answers
 let totalWrong = " ";
 
+//Hide questions and time
+// function hideGame() {
+//     $(".quiz").hide()
+// }
 //Create a function that when onclick on start button - questions are displayed
-function onclick(event) {
+$("#clickStart").on("click",function(){
+    $(this).hide();
+    $(".startImages").hide();
+});
+
+
+
+//Create function to set up screen and timer- append questions and choices to html
+function gameStart() {
+    for (i = 0; i < myQuestions.length; i++) {
     
+    console.log(myQuestions);
+    $(".quiz").append("<p>" + myQuestions[i].question + "</p>");
+    }
 }
-//Create a function to start and set the timer [interval?] and end game when time is up
-//Create function to set up screen - append questions and choices to html
+gameStart();
+
+
 //Create a function to store user answers and push to userAnswers array
 //Create function to compare the results of userAnswers vs correctAnswers
     //if/else if
     //log the total correct answers / log total wrong
 //Display total wrong and total right  
+//Calling the functions
+// hideGame();
 
-
+});
