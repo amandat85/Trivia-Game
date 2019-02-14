@@ -1,0 +1,43 @@
+* {
+   margin: none;
+   padding: none; 
+}
+
+body {
+    background-image: url("../../assets/images/rainbow.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 100%;
+    font-size: 16pt;
+    line-height: 150%;
+}
+
+h1 {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 60pt;
+}
+
+.pageWrapper {
+    position: absolute;
+    border-style: solid;
+    border-color: #ABDEC8;
+    border-radius: 1%;
+    top: 100px;
+    left: 175px;
+    right: 175px;
+    width: 75%;
+    height: 575px;
+    background-color: #ABDEC8;
+    text-align: center;
+}
+
+#clickStart {
+    padding: 50px 300px 50px 300px;
+    margin-top: 75px;
+    background-color: #445CA5;
+    color: #ffffff;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 25pt;
+
+}
