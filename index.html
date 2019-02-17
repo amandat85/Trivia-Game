@@ -22,7 +22,7 @@
 <body>
     <!--Start Screen-->
     <div class="pageWrapper">
-        <div class="startScreen">
+        <!-- <div class="startScreen">
             <h1>Trivia Game</h1>
             <div class="startImages">
                 <img src="assets/images/flamingo1.png" alt="Flamingo" width="100" height="150" />
@@ -31,25 +31,38 @@
                 <img src="assets/images/vulture.png" alt="Vulture" height="150" />
             </div>
             <button id="clickStart" name="start" type="button" value="startButton">Start</button>
+        </div> -->
+        <!--Game Area-->
+        <div id="quizContainer" class="container">
+            <div id="question" class=questions></div>
+            <label>
+                <input type="radio" name="answerOptions" value="a"><span id="ansA"></span></label>
+            <input type="radio" name="answerOptions" value="b"><span id="ansB"></span></label>
+            <input type="radio" name="answerOptions" value="c"><span id="ansC"></span></label>
+            <button id="nextButton">Next Question</button>
         </div>
 
-        <div class="quiz">
-           
-            
-            
-            </div>
-        </div>
+        <!--Results Area-->
+        <div id="results"></div>
+
+
+
+
+
+
+
+
     </div>
 
 
 
-    <!--Game Area-->
+
 
     <!--Footer-->
 
 
     <!--JavaScript-->
-    <script src="assets/javascript/apps1.js"></script>
+    <script src="assets/javascript/test.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
