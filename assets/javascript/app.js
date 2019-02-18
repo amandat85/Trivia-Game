@@ -1,4 +1,4 @@
-$(document).ready(function (){
+$(document).ready(function () {
 
     //VARIABLES ==========================================================================
     //To hold score
@@ -16,7 +16,7 @@ $(document).ready(function (){
     //To hold question position
     let indexQuestions = 0;
     //Define number for timer
-    let number = 30;
+    let number = 20;
 
     //Questions, Answer Choices, Correct Answer ======================================   
     let myQuestions = [
@@ -51,10 +51,10 @@ $(document).ready(function (){
         $("#timer").show();
 
     });
-    //Set timer function
+    //SET TIMER FUNCTION==========================================================
     function run() {
-    clearInterval(timer);
-    timer = setInterval(decrement, 1000);
+        clearInterval(timer);
+        timer = setInterval(decrement, 1000);
     }
 
     function decrement() {
@@ -64,39 +64,52 @@ $(document).ready(function (){
     run();
     decrement();
 
+    //FUNCTION - TIMER STOP=================================
+    function intervalStop() {      
+        clearInterval(timer);
+    }
+    //on click stoppage
+    $("#options").on("click", function() {
+        clearInterval(timer);
+    });
+
+    //number = 0 stoppage
+    if (number < 0 ){
+        intervalStop();
+    }
 
     //Create function to set up questions and answer options
     function gameStart() {
-      
-        if (indexQuestions <= (myQuestions.length - 1)){
-            document.querySelector("#question").innerHTML = ([indexQuestions+1] + "&rpar; " + myQuestions[indexQuestions].question);
-
-            for (var i = 0; i < 3; i++) {
-            console.log(myQuestions[indexQuestions].answers[i])
-
-            
-                document.querySelector("#answers").innerHTML += ("<input type='button' name='opt" + i + "' value='" +  myQuestions[indexQuestions].answers[i] + " ' >" + "</input>");
-          
-            // } myQuestions[indexQuestions].answers[i] +
-          
-        }
-        // else {
-        //     document.querySelector("#question").innerHTML = ("Game Over!");
-        //     //set up score here
-        // }
-    }
         
+        if (indexQuestions <= (myQuestions.length - 1)) {
+            document.querySelector("#question").innerHTML = ([indexQuestions + 1] + "&rpar; " + myQuestions[indexQuestions].question);
+
+        for (var i = 0; i < 3; i++) {
+            console.log(myQuestions[indexQuestions].answers[i])
+            document.querySelector("#options").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[indexQuestions].answers[i] + " '>" + "</input>");
+            $("input").attr("class", "buttonStyle");
+            $("input").attr("id", "buttonStop");
+        }
+        correctAnswers = myQuestions[indexQuestions].correct;
+        console.log(correctAnswers);
+        }
+        else {
+            //Game Over
+        }
     }
+    gameStart(); 
 
-    gameStart();
 
+  
+    
 
-    //Create a function to store user answers and push to userAnswers array
     //Create function to compare the results of userAnswers vs correctAnswers
     //if/else if
     //log the total correct answers / log total wrong
     //Display total wrong and total right  
     //Calling the functions
     // hideGame();
+    indexQuestions++;
+
 
 });

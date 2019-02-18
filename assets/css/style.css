@@ -42,5 +42,14 @@ h1 {
     color: #ffffff;
     font-family: 'Luckiest Guy', cursive;
     font-size: 25pt;
+}
 
+.buttonStyle {
+    padding: 10px 25px 10px 25px;
+    margin-top: 75px;
+    margin-right: 10px;
+    background-color: #445CA5;
+    color: #ffffff;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16pt;
 }
