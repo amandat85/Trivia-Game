@@ -4,7 +4,7 @@ $(document).ready(function (){
     //To hold score
     let score = 0;
     //To hold timer
-    let timer = 0;
+    let timer;
     //To hold answers
     let userAnswers = [];
     //To hold correctAnswers
@@ -15,6 +15,8 @@ $(document).ready(function (){
     let totalWrong = " ";
     //To hold question position
     let indexQuestions = 0;
+    //Define number for timer
+    let number = 30;
 
     //Questions, Answer Choices, Correct Answer ======================================   
     let myQuestions = [
@@ -36,7 +38,8 @@ $(document).ready(function (){
     //FUNCTIONS====================================================================
     // Hide questions and time
     function hideGame() {
-        $(".quiz").hide()
+        $(".quiz").hide();
+        $("#timer").hide();
     }
     hideGame();
 
@@ -44,16 +47,27 @@ $(document).ready(function (){
     $("#clickStart").on("click", function () {
         $(this).hide();
         $(".startImages").hide();
-        $(".quiz").show()
+        $(".quiz").show();
+        $("#timer").show();
+
     });
     //Set timer function
-    
-    timer = setInterval(timer, 1000);
-    
+    function run() {
+    clearInterval(timer);
+    timer = setInterval(decrement, 1000);
+    }
+
+    function decrement() {
+        number--;
+        document.querySelector("#timer").innerHTML = "Time Remaining: " + number;
+    }
+    run();
+    decrement();
 
 
     //Create function to set up questions and answer options
     function gameStart() {
+      
         if (indexQuestions <= (myQuestions.length - 1)){
             document.querySelector("#question").innerHTML = ([indexQuestions+1] + "&rpar; " + myQuestions[indexQuestions].question);
 
@@ -61,7 +75,7 @@ $(document).ready(function (){
             console.log(myQuestions[indexQuestions].answers[i])
 
             
-                document.querySelector("#answers").innerHTML += ("<input type='button' name='q-" + i + "' value='" +  myQuestions[indexQuestions].answers[i] + " ' >" + "</input>");
+                document.querySelector("#answers").innerHTML += ("<input type='button' name='opt" + i + "' value='" +  myQuestions[indexQuestions].answers[i] + " ' >" + "</input>");
           
             // } myQuestions[indexQuestions].answers[i] +
           
