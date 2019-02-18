@@ -22,7 +22,7 @@
 <body>
     <!--Start Screen-->
     <div class="pageWrapper">
-        <!-- <div class="startScreen">
+        <div class="startScreen">
             <h1>Trivia Game</h1>
             <div class="startImages">
                 <img src="assets/images/flamingo1.png" alt="Flamingo" width="100" height="150" />
@@ -31,15 +31,16 @@
                 <img src="assets/images/vulture.png" alt="Vulture" height="150" />
             </div>
             <button id="clickStart" name="start" type="button" value="startButton">Start</button>
-        </div> -->
-        <!--Game Area-->
-            <div class="quiz"></div>
-            <!-- <label><input type="radio" name="answerOptions" value="a"><span id="opt1"></span></label>
-            <label><input type="radio" name="answerOptions" value="b"><span id="opt2"></span></label>
-            <label><input type="radio" name="answerOptions" value="c"><span id="opt3"></span></label>
-            <button id="nextButton">Next Question</button> -->
         </div>
-
+        <!--Game Area-->
+            <div class="quiz">
+                <section class="question">
+                    <p id="question"></p>
+                </section><section id="answers">
+                   
+                </section>
+            </div>
+            
         <!--Results Area-->
         <div id="results"></div>
 

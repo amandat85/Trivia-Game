@@ -1,38 +1,6 @@
-$(document).ready(function () {
+$(document).ready(function (){
 
-    //Variables
-    //To hold questions
-    let myQuestions = [
-
-        //Questions, Answer Choices, Correct Answer ======================================   
-        {
-            question: "What is a group flamingos called?",
-
-            answers: ["Flock", "Pride", "Flamboyance"],
-
-            correct: "Flamboyance",
-        },
-        {
-            question: "Which is not a term for a group of vultures?",
-
-            answers: ["Funeral", "Wake", "Venue"],
-
-            correct: "Funeral",
-        },
-
-
-    ];
-    // console.log(myQuestions[0]);
-    // console.log(myQuestions[0].question);
-    // console.log(myQuestions[0].answers);
-    // console.log(myQuestions[0].correct);
-    // console.log(myQuestions[1]);
-    // console.log(myQuestions[1].question);
-    // console.log(myQuestions[1].answers);
-    // console.log(myQuestions[1].correct);
-
-
-
+    //VARIABLES ==========================================================================
     //To hold score
     let score = 0;
     //To hold timer
@@ -45,46 +13,66 @@ $(document).ready(function () {
     let totalCorrect = " ";
     //To hold total wrong answers
     let totalWrong = " ";
-    //To hold answer options
-    let answers = [];
+    //To hold question position
+    let indexQuestions = 0;
 
+    //Questions, Answer Choices, Correct Answer ======================================   
+    let myQuestions = [
+        {
+            question: "What is a group of flamingos called?",
+            answers: ["Flock", "Pride", "Flamboyance"],
+            correct: "Flamboyance",
+        },
+        {
+            question: "Which is not a term for a group of vultures?",
+            answers: ["Funeral", "Wake", "Venue"],
+            correct: "Funeral",
+        },
+    ];
 
-    // //Hide questions and time
-    // function hideGame() {
-    //     $(".quiz").hide()
-    // }
-    // hideGame();
+    console.log(myQuestions[0].question);
+    console.log(myQuestions[0].answers);
 
-    $(".quiz").append("<ol></ol>");
+    //FUNCTIONS====================================================================
+    // Hide questions and time
+    function hideGame() {
+        $(".quiz").hide()
+    }
+    hideGame();
 
-
-
-    // //Create a function that when onclick on start button - questions are displayed
-    // $("#clickStart").on("click",function(){
-    //     $(this).hide();
-    //     $(".startImages").hide();
-    //     $(".quiz").show()
-    // });
-
-
-
-    //Create function to set up screen and timer- append questions and choices to html
-    function gameStart() {
-        for (var i = 0; i < myQuestions.length; i++) {
-          // console.log(myQuestions[i]);
-        //    console.log(myQuestions[i].answers);
-
-            $("ol").append("<li>" + myQuestions[i].question + "</li>");
-            $("li").attr("class", "alignment");
-           
-            for (var j = 0; j < myQuestions[i].answers.length; j++) {
-                console.log(myQuestions[i].answers[j]);
-            }
-        }
-
-        
+    //Create a function that when onclick on start button - questions are displayed
+    $("#clickStart").on("click", function () {
+        $(this).hide();
+        $(".startImages").hide();
+        $(".quiz").show()
+    });
+    //Set timer function
     
-}
+    timer = setInterval(timer, 1000);
+    
+
+
+    //Create function to set up questions and answer options
+    function gameStart() {
+        if (indexQuestions <= (myQuestions.length - 1)){
+            document.querySelector("#question").innerHTML = ([indexQuestions+1] + "&rpar; " + myQuestions[indexQuestions].question);
+
+            for (var i = 0; i < 3; i++) {
+            console.log(myQuestions[indexQuestions].answers[i])
+
+            
+                document.querySelector("#answers").innerHTML += ("<input type='button' name='q-" + i + "' value='" +  myQuestions[indexQuestions].answers[i] + " ' >" + "</input>");
+          
+            // } myQuestions[indexQuestions].answers[i] +
+          
+        }
+        // else {
+        //     document.querySelector("#question").innerHTML = ("Game Over!");
+        //     //set up score here
+        // }
+    }
+        
+    }
 
     gameStart();
 
