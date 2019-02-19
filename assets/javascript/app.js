@@ -19,6 +19,7 @@ $(document).ready(function () {
     let number = 20;
     //Hold value from clicked button
     let clickedButton;
+   
 
     //Questions, Answer Choices, Correct Answer ======================================   
     let myQuestions = [
@@ -48,14 +49,12 @@ $(document).ready(function () {
         $(".startImages").hide();
         $(".quiz").show();
         $("#timer").show();
-
     });
     //SET TIMER FUNCTION==========================================================
     function run() {
         //clearInterval(timer);
         timer = setInterval(decrement, 1000);
     }
-
     function decrement() {
         number--;
         document.querySelector("#timer").innerHTML = "Time Remaining: " + number;
@@ -80,7 +79,7 @@ $(document).ready(function () {
     //Create function to set up questions and answer options
     function gameStart() {
         if (indexQuestions <= (myQuestions.length - 1)) {
-            document.querySelector("#question").innerHTML = ([indexQuestions + 1] + "&rpar; " + myQuestions[indexQuestions].question);
+            document.querySelector("#question").innerHTML = (myQuestions[indexQuestions].question);
 
             for (var i = 0; i < 3; i++) {
                 console.log(myQuestions[indexQuestions].answers[i])
@@ -90,6 +89,7 @@ $(document).ready(function () {
             }
             correctAnswers = myQuestions[indexQuestions].correct;
             return correctAnswers;
+
         }
         else {
             //Game Over alert on page

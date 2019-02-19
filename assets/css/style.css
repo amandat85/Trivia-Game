@@ -17,6 +17,16 @@ h1 {
     font-size: 60pt;
 }
 
+h3 {
+    font-family: 'Rubik', sans-serif;
+}
+
+p {
+    font-family: 'Rubik', sans-serif;
+    font-size: 18pt;
+    margin-top: 5%;
+}
+
 .alignment {
     text-align: left;
 }
@@ -42,6 +52,7 @@ h1 {
     color: #ffffff;
     font-family: 'Luckiest Guy', cursive;
     font-size: 25pt;
+    border-radius: 25%;
 }
 
 .buttonStyle, .buttonClicked {
