@@ -1,25 +1,22 @@
 $(document).ready(function () {
 
     //VARIABLES ==========================================================================
-    //To hold score
-    let score = 0;
     //To hold timer
     let timer;
     //To hold answers
-    let userAnswers = [];
+    let totalUnanswered = 0;
     //To hold correctAnswers
-    let correctAnswers = " ";
     //To hold total correct answers
-    let totalCorrect = " ";
+    let totalCorrect = 0;
     //To hold total wrong answers
-    let totalWrong = " ";
+    let totalWrong = 0;
     //To hold question position
     let indexQuestions = 0;
     //Define number for timer
     let number = 5;
     //Hold value from clicked button
     let clickedButton;
-   
+
 
     //Questions, Answer Choices, Correct Answer ======================================   
     let myQuestions = [
@@ -43,14 +40,23 @@ $(document).ready(function () {
     }
     hideGame();
 
-    //When start is click show questions and time
-    $("#clickStart").on("click", function () {
-        $(this).hide();
-        $(".startImages").hide();
+    function showGame() {
         $(".quiz").show();
         $("#timer").show();
         run();
         decrement();
+        gameStart();
+    }
+
+    function rightAnswer(){
+        document.querySelector(".quiz").innerHTML = "The correct answer is " + correctAnswers;
+    }
+
+    //When start is click show questions and time
+    $("#clickStart").on("click", function () {
+        $(this).hide();
+        $(".startImages").hide();
+        showGame();
     });
     //SET TIMER FUNCTION==========================================================
     function run() {
@@ -62,15 +68,13 @@ $(document).ready(function () {
         document.querySelector("#timer").innerHTML = "Time Remaining: " + number;
         //Why does this need to be declared in the decrement function? Is it a scope issue?
         if (number === 0) {
-            alert("Time's Up");
             intervalStop();
-            $(".quiz").hide();
-            $("#rightWrong").show();
-            document.querySelector("#rightWrong").innerHTML = "The correct answer is " + correctAnswers;
-            indexQuestions++;
+            rightAnswer();
+            setTimeout(loadNextQuestion, 5000);
+                console.log(setTimeout);
         }
     }
-    
+
     //FUNCTION TIMER STOP=======================================================
     function intervalStop() {
         clearInterval(timer);
@@ -78,8 +82,14 @@ $(document).ready(function () {
     //on click stoppage
     $("#options").on("click", function () {
         intervalStop();
+        $(".buttonClicked").prop("disabled", true);
+        setTimeout(function () {
+        $(".buttonClicked").prop("disabled", false);
+        }, 5000);
+        // console.log(clickedButton);
     });
- 
+
+
     //GAME START FUNCTION=========================================================================================
     //Create function to set up questions and answer options
     function gameStart() {
@@ -94,6 +104,7 @@ $(document).ready(function () {
             }
             correctAnswers = myQuestions[indexQuestions].correct;
             return correctAnswers;
+            console.log(correctAnswers);
 
         }
         else {
@@ -101,8 +112,6 @@ $(document).ready(function () {
             //Show results function
         }
     }
-    gameStart();
-    console.log(correctAnswers);
 
     //ANSWER CHOICE AND CORRECT ANSWERS===================================================================
     //Assign a button class to pick up the value of the button clicked 
@@ -119,6 +128,14 @@ $(document).ready(function () {
     }
     checkResults();
 
+    //LOAD NEXT QUESTION==================================================================================
+    function loadNextQuestion(){
+        setTimeout(function () {
+        }, 10000);
+        //append next question to #question 
+        $(".quiz").show();
+        indexQuestions++
+    }
     //if clicked button value = myQuestions[indexQuestions].correct
     //then alert user on page that they are correct
     //push correct answer to total correct 
