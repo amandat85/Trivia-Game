@@ -52,6 +52,7 @@ $(document).ready(function () {
         run();
         decrement();
         gameStart();
+        //answerOptions();
         $("#alertCorrect").hide();
     }
     showGame;
@@ -109,7 +110,9 @@ $(document).ready(function () {
         if (indexQuestions <= (myQuestions.length)) {
             document.querySelector("#question").innerHTML = (myQuestions[indexQuestions].question);
 
-            for (var i = 0; i < 3; i++) {
+            //BIG PROBLEM HERE=================
+
+              for (var i = 0; i < 3; i++) {
                 console.log(myQuestions[indexQuestions].answers[i])
                 document.querySelector("#options").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[indexQuestions].answers[i] + " '>" + "</input>");
                 $("input").attr("class", "buttonClicked");
@@ -120,13 +123,14 @@ $(document).ready(function () {
             return correctAnswers;
         }
         else {
-            //Game Over alert on page
-            //Show results function
+            $("#question").append("Game Over");
         }
     }
 
     
     console.log(correctAnswers);
+    
+   
 
     //ANSWER CHOICE AND CORRECT ANSWERS===================================================================
     //Assign a button class to pick up the value of the button clicked 
@@ -158,9 +162,5 @@ $(document).ready(function () {
     //Display total unanswered
 
     //RESET FUNCTION========================================================================================
-
-    //increment questions
-    //indexQuestions++;
-
 
 });
