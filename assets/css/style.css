@@ -44,7 +44,7 @@ h1 {
     font-size: 25pt;
 }
 
-.buttonStyle {
+.buttonStyle, .buttonClicked {
     padding: 10px 25px 10px 25px;
     margin-top: 75px;
     margin-right: 10px;

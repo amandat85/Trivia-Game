@@ -8,7 +8,7 @@ $(document).ready(function () {
     //To hold answers
     let userAnswers = [];
     //To hold correctAnswers
-    let correctAnswers = [];
+    let correctAnswers = " ";
     //To hold total correct answers
     let totalCorrect = " ";
     //To hold total wrong answers
@@ -17,6 +17,8 @@ $(document).ready(function () {
     let indexQuestions = 0;
     //Define number for timer
     let number = 20;
+    //Hold value from clicked button
+    let clickedButton = " ";
 
     //Questions, Answer Choices, Correct Answer ======================================   
     let myQuestions = [
@@ -32,18 +34,15 @@ $(document).ready(function () {
         },
     ];
 
-    console.log(myQuestions[0].question);
-    console.log(myQuestions[0].answers);
-
-    //FUNCTIONS====================================================================
-    // Hide questions and time
+    //HIDE AND SHOW FUNCTIONS==============================================================
+    //Hide questions and time on start page
     function hideGame() {
         $(".quiz").hide();
         $("#timer").hide();
     }
     hideGame();
 
-    //Create a function that when onclick on start button - questions are displayed
+    //When start is click show questions and time
     $("#clickStart").on("click", function () {
         $(this).hide();
         $(".startImages").hide();
@@ -64,7 +63,8 @@ $(document).ready(function () {
     run();
     decrement();
 
-    //FUNCTION - TIMER STOP=================================
+    //FUNCTION TIMER STOP=======================================================
+    //Not working??????
     function intervalStop() {      
         clearInterval(timer);
     }
@@ -73,11 +73,12 @@ $(document).ready(function () {
         clearInterval(timer);
     });
 
-    //number = 0 stoppage
+    //number = 0 stoppage - not working????
     if (number < 0 ){
         intervalStop();
     }
 
+    //GAME START FUNCTION=========================================================================================
     //Create function to set up questions and answer options
     function gameStart() {
         
@@ -87,28 +88,54 @@ $(document).ready(function () {
         for (var i = 0; i < 3; i++) {
             console.log(myQuestions[indexQuestions].answers[i])
             document.querySelector("#options").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[indexQuestions].answers[i] + " '>" + "</input>");
-            $("input").attr("class", "buttonStyle");
+            $("input").attr("class", "buttonClicked");
             $("input").attr("id", "buttonStop");
         }
         correctAnswers = myQuestions[indexQuestions].correct;
-        console.log(correctAnswers);
+        return correctAnswers;
         }
         else {
-            //Game Over
+            //Game Over alert on page
+            //Show results function
         }
     }
     gameStart(); 
-
-
+    console.log(correctAnswers);
+    //ANSWER CHOICE AND CORRECT ANSWERS===================================================================
+    //assign a button onclick for each button generated, then create a function for it  - on.(click checkanswer), then check answer through value)
+    function checkResults () {
+    $(".buttonClicked").on("click", function() {
+        clickedButton = $(this).val();
+        console.log(clickedButton);
   
-    
+    if (clickedButton === correctAnswers) {
+        console.log(clickedButton);
+    }
 
-    //Create function to compare the results of userAnswers vs correctAnswers
-    //if/else if
-    //log the total correct answers / log total wrong
-    //Display total wrong and total right  
-    //Calling the functions
-    // hideGame();
+    });
+
+}
+ checkResults();  
+    
+    //if clicked button value = myQuestions[indexQuestions].correct
+
+   
+        //then alert user on page that they are correct
+        //push correct answer to total correct 
+        //Next question
+    //else if click button value !== myQuestions[indexQuestions].correct
+        //then alert the user that they are incorrect and show right answer
+        //push to incorrect
+        //Next question
+    
+    //RESULTS FUNCTION======================================================================================
+        //Display total correct
+        //Display total wrong
+        //Display total unanswered
+
+    //RESET FUNCTION========================================================================================
+
+    //increment questions
     indexQuestions++;
 
 
