@@ -18,7 +18,7 @@ $(document).ready(function () {
     //Define number for timer
     let number = 20;
     //Hold value from clicked button
-    let clickedButton = " ";
+    let clickedButton;
 
     //Questions, Answer Choices, Correct Answer ======================================   
     let myQuestions = [
@@ -52,86 +52,81 @@ $(document).ready(function () {
     });
     //SET TIMER FUNCTION==========================================================
     function run() {
-        clearInterval(timer);
+        //clearInterval(timer);
         timer = setInterval(decrement, 1000);
     }
 
     function decrement() {
         number--;
         document.querySelector("#timer").innerHTML = "Time Remaining: " + number;
+        //Why does this need to be declared in the decrement function? Is it a scope issue?
+        if (number === 0) {
+            intervalStop();
+        }
     }
     run();
     decrement();
-
+    
     //FUNCTION TIMER STOP=======================================================
-    //Not working??????
-    function intervalStop() {      
+    function intervalStop() {
         clearInterval(timer);
     }
     //on click stoppage
-    $("#options").on("click", function() {
-        clearInterval(timer);
-    });
-
-    //number = 0 stoppage - not working????
-    if (number < 0 ){
+    $("#options").on("click", function () {
         intervalStop();
-    }
-
+    });
+ 
     //GAME START FUNCTION=========================================================================================
     //Create function to set up questions and answer options
     function gameStart() {
-        
         if (indexQuestions <= (myQuestions.length - 1)) {
             document.querySelector("#question").innerHTML = ([indexQuestions + 1] + "&rpar; " + myQuestions[indexQuestions].question);
 
-        for (var i = 0; i < 3; i++) {
-            console.log(myQuestions[indexQuestions].answers[i])
-            document.querySelector("#options").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[indexQuestions].answers[i] + " '>" + "</input>");
-            $("input").attr("class", "buttonClicked");
-            $("input").attr("id", "buttonStop");
-        }
-        correctAnswers = myQuestions[indexQuestions].correct;
-        return correctAnswers;
+            for (var i = 0; i < 3; i++) {
+                console.log(myQuestions[indexQuestions].answers[i])
+                document.querySelector("#options").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[indexQuestions].answers[i] + " '>" + "</input>");
+                $("input").attr("class", "buttonClicked");
+                $("input").attr("id", "buttonStop");
+            }
+            correctAnswers = myQuestions[indexQuestions].correct;
+            return correctAnswers;
         }
         else {
             //Game Over alert on page
             //Show results function
         }
     }
-    gameStart(); 
+    gameStart();
     console.log(correctAnswers);
+
     //ANSWER CHOICE AND CORRECT ANSWERS===================================================================
-    //assign a button onclick for each button generated, then create a function for it  - on.(click checkanswer), then check answer through value)
-    function checkResults () {
-    $(".buttonClicked").on("click", function() {
+    //Assign a button class to pick up the value of the button clicked 
+
+    $(".buttonClicked").on("click", function () {
         clickedButton = $(this).val();
-        console.log(clickedButton);
-  
-    if (clickedButton === correctAnswers) {
-        console.log(clickedButton);
-    }
+        // console.log(clickedButton);
 
     });
+    function checkResults() {
+        if (clickedButton === correctAnswers) {
+            console.log(clickedButton);
+        }
+    }
+    checkResults();
 
-}
- checkResults();  
-    
     //if clicked button value = myQuestions[indexQuestions].correct
-
-   
-        //then alert user on page that they are correct
-        //push correct answer to total correct 
-        //Next question
+    //then alert user on page that they are correct
+    //push correct answer to total correct 
+    //Next question
     //else if click button value !== myQuestions[indexQuestions].correct
-        //then alert the user that they are incorrect and show right answer
-        //push to incorrect
-        //Next question
-    
+    //then alert the user that they are incorrect and show right answer
+    //push to incorrect
+    //Next question
+
     //RESULTS FUNCTION======================================================================================
-        //Display total correct
-        //Display total wrong
-        //Display total unanswered
+    //Display total correct
+    //Display total wrong
+    //Display total unanswered
 
     //RESET FUNCTION========================================================================================
 
