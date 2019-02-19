@@ -16,7 +16,7 @@ $(document).ready(function () {
     //To hold question position
     let indexQuestions = 0;
     //Define number for timer
-    let number = 20;
+    let number = 5;
     //Hold value from clicked button
     let clickedButton;
    
@@ -49,6 +49,8 @@ $(document).ready(function () {
         $(".startImages").hide();
         $(".quiz").show();
         $("#timer").show();
+        run();
+        decrement();
     });
     //SET TIMER FUNCTION==========================================================
     function run() {
@@ -60,11 +62,14 @@ $(document).ready(function () {
         document.querySelector("#timer").innerHTML = "Time Remaining: " + number;
         //Why does this need to be declared in the decrement function? Is it a scope issue?
         if (number === 0) {
+            alert("Time's Up");
             intervalStop();
+            $(".quiz").hide();
+            $("#rightWrong").show();
+            document.querySelector("#rightWrong").innerHTML = "The correct answer is " + correctAnswers;
+            indexQuestions++;
         }
     }
-    run();
-    decrement();
     
     //FUNCTION TIMER STOP=======================================================
     function intervalStop() {
@@ -108,8 +113,8 @@ $(document).ready(function () {
 
     });
     function checkResults() {
-        if (clickedButton === correctAnswers) {
-            console.log(clickedButton);
+        if (number === 0) {
+            alert("Time's Up");
         }
     }
     checkResults();
