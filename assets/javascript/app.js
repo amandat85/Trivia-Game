@@ -16,6 +16,8 @@ $(document).ready(function () {
     let number = 5;
     //Hold value from clicked button
     let clickedButton;
+    //Answers
+    let correctAnswers = 0;
 
 
     //Questions, Answer Choices, Correct Answer ======================================   
@@ -35,21 +37,30 @@ $(document).ready(function () {
     //HIDE AND SHOW FUNCTIONS==============================================================
     //Hide questions and time on start page
     function hideGame() {
-        $(".quiz").hide();
+        $("#question").hide();
         $("#timer").hide();
+        $("#options").hide()
     }
     hideGame();
 
     function showGame() {
-        $(".quiz").show();
+        $("#question").show();
         $("#timer").show();
+        $("#options").show();
+        clearInterval(timer)
+        number = 5
         run();
         decrement();
         gameStart();
+        $("#alertCorrect").hide();
     }
+    showGame;
+   
 
     function rightAnswer(){
-        document.querySelector(".quiz").innerHTML = "The correct answer is " + correctAnswers;
+        hideGame();
+        $("#alertCorrect").show();
+        document.querySelector("#alertCorrect").innerHTML = "The correct answer is " + correctAnswers;
     }
 
     //When start is click show questions and time
@@ -60,7 +71,7 @@ $(document).ready(function () {
     });
     //SET TIMER FUNCTION==========================================================
     function run() {
-        //clearInterval(timer);
+        clearInterval(timer);
         timer = setInterval(decrement, 1000);
     }
     function decrement() {
@@ -70,8 +81,8 @@ $(document).ready(function () {
         if (number === 0) {
             intervalStop();
             rightAnswer();
-            setTimeout(loadNextQuestion, 5000);
-                console.log(setTimeout);
+            setTimeout(showGame, 5000);      
+            indexQuestions++;  
         }
     }
 
@@ -79,6 +90,7 @@ $(document).ready(function () {
     function intervalStop() {
         clearInterval(timer);
     }
+
     //on click stoppage
     $("#options").on("click", function () {
         intervalStop();
@@ -93,7 +105,8 @@ $(document).ready(function () {
     //GAME START FUNCTION=========================================================================================
     //Create function to set up questions and answer options
     function gameStart() {
-        if (indexQuestions <= (myQuestions.length - 1)) {
+
+        if (indexQuestions <= (myQuestions.length)) {
             document.querySelector("#question").innerHTML = (myQuestions[indexQuestions].question);
 
             for (var i = 0; i < 3; i++) {
@@ -102,10 +115,9 @@ $(document).ready(function () {
                 $("input").attr("class", "buttonClicked");
                 $("input").attr("id", "buttonStop");
             }
+
             correctAnswers = myQuestions[indexQuestions].correct;
             return correctAnswers;
-            console.log(correctAnswers);
-
         }
         else {
             //Game Over alert on page
@@ -113,29 +125,24 @@ $(document).ready(function () {
         }
     }
 
+    
+    console.log(correctAnswers);
+
     //ANSWER CHOICE AND CORRECT ANSWERS===================================================================
     //Assign a button class to pick up the value of the button clicked 
 
-    $(".buttonClicked").on("click", function () {
-        clickedButton = $(this).val();
-        // console.log(clickedButton);
+    // $(".buttonClicked").on("click", function () {
+    //     clickedButton = $(this).val();
+    //     // console.log(clickedButton);
 
-    });
-    function checkResults() {
-        if (number === 0) {
-            alert("Time's Up");
-        }
-    }
-    checkResults();
+    // });
+    // function checkResults() {
+    //     if (number === 0) {
+    //         alert("Time's Up");
+    //     }
+    // }
+    // checkResults();
 
-    //LOAD NEXT QUESTION==================================================================================
-    function loadNextQuestion(){
-        setTimeout(function () {
-        }, 10000);
-        //append next question to #question 
-        $(".quiz").show();
-        indexQuestions++
-    }
     //if clicked button value = myQuestions[indexQuestions].correct
     //then alert user on page that they are correct
     //push correct answer to total correct 
@@ -153,7 +160,7 @@ $(document).ready(function () {
     //RESET FUNCTION========================================================================================
 
     //increment questions
-    indexQuestions++;
+    //indexQuestions++;
 
 
 });
