@@ -18,6 +18,31 @@ $(document).ready(function () {
             answers: ["Funeral", "Wake", "Venue"],
             correct: "Funeral",
         },
+        {
+            question: "Penguins can stay underwater up to how many minutes?",
+            answers: ["10 minutes", "20 minutes", "30 minutes"],
+            correct: "20 minutes",
+        },
+        {
+            question: "Owls have what type of vision?",
+            answers: ["Binocular", "Myopic", "Persbyopic"],
+            correct: "Binocular",
+        },
+        {
+            question: "What is the average lifespan of a wild turkey?",
+            answers: ["10-15 years", "2-4 years", "3-5 years"],
+            correct: "3-5 years",
+        },
+        {
+            question: "Which is not a blue jay colour?",
+            answers: ["Purple", "Brown", "White"],
+            correct: "Brown",
+        },
+        {
+            question: "What is a baby puffin called?",
+            answers: ["Puffling", "Duckling", "Kindle"],
+            correct: "Puffling",
+        },
     ];
     console.log(myQuestions);
 
@@ -36,11 +61,11 @@ $(document).ready(function () {
     }
     function decrement() {
         number--;
-        document.querySelector("#timer").innerHTML = "Time Remaining: " + number;
+        document.querySelector("#timer").innerHTML = ("Time Remaining: " + number);
         // Why does this need to be declared in the decrement function? Is it a scope issue?
         if (number === 0) {
             clearInterval(timer);
-            document.querySelector("#question").innerHTML = "The correct answer is " + myQuestions[questionIndex].correct;
+            document.querySelector("#question").innerHTML = ("The correct answer is <button>" + myQuestions[questionIndex].correct + "</button>");
             $("#options").html("");
             setTimeout(loadQuestions, 4000);
             questionIndex++;

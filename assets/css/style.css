@@ -55,7 +55,7 @@ p {
     border-radius: 25%;
 }
 
-.buttonStyle, .buttonClicked {
+button, .buttonStyle, .buttonClicked {
     padding: 10px 25px 10px 25px;
     margin-top: 75px;
     margin-right: 10px;
