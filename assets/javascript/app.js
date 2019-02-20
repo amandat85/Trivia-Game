@@ -1,27 +1,13 @@
 $(document).ready(function () {
-
-    //VARIABLES ==========================================================================
-    //To hold timer
-    let timer;
-    //To hold answers
-    let totalUnanswered = 0;
-    //To hold correctAnswers
-    //To hold total correct answers
-    let totalCorrect = 0;
-    //To hold total wrong answers
-    let totalWrong = 0;
-    //To hold question position
-    let indexQuestions = 0;
-    //Define number for timer
-    let number = 5;
-    //Hold value from clicked button
-    let clickedButton;
-    //Answers
-    let correctAnswers = 0;
-
-
-    //Questions, Answer Choices, Correct Answer ======================================   
-    let myQuestions = [
+    //VARIALBES====================================
+    var correctAnswers = 0;
+    var wrongAnswers = 0;
+    var unanswered = 0;
+    var number = 15;
+    var questionIndex = 0;
+    var correct = "";
+    //Question, Answer, and Answer Choices===================
+    var myQuestions = [
         {
             question: "What is a group of flamingos called?",
             answers: ["Flock", "Pride", "Flamboyance"],
@@ -33,44 +19,17 @@ $(document).ready(function () {
             correct: "Funeral",
         },
     ];
+    console.log(myQuestions);
 
-    //HIDE AND SHOW FUNCTIONS==============================================================
-    //Hide questions and time on start page
-    function hideGame() {
-        $("#question").hide();
-        $("#timer").hide();
-        $("#options").hide()
-    }
-    hideGame();
-
-    function showGame() {
-        $("#question").show();
-        $("#timer").show();
-        $("#options").show();
-        clearInterval(timer)
-        number = 5
-        run();
-        decrement();
-        gameStart();
-        //answerOptions();
-        $("#alertCorrect").hide();
-    }
-    showGame;
-   
-
-    function rightAnswer(){
-        hideGame();
-        $("#alertCorrect").show();
-        document.querySelector("#alertCorrect").innerHTML = "The correct answer is " + correctAnswers;
-    }
-
-    //When start is click show questions and time
+    //HIDE START SCREEN================================
     $("#clickStart").on("click", function () {
         $(this).hide();
         $(".startImages").hide();
-        showGame();
+        $("#timer").show();
+        loadQuestions();
     });
-    //SET TIMER FUNCTION==========================================================
+    
+    //SET TIMER FUNCTION=====================================
     function run() {
         clearInterval(timer);
         timer = setInterval(decrement, 1000);
@@ -78,89 +37,60 @@ $(document).ready(function () {
     function decrement() {
         number--;
         document.querySelector("#timer").innerHTML = "Time Remaining: " + number;
-        //Why does this need to be declared in the decrement function? Is it a scope issue?
+        // Why does this need to be declared in the decrement function? Is it a scope issue?
         if (number === 0) {
-            intervalStop();
-            rightAnswer();
-            setTimeout(showGame, 5000);      
-            indexQuestions++;  
+            clearInterval(timer);
+
+            document.querySelector("#question").innerHTML = "The correct answer is " + myQuestions[questionIndex].correct;
+            setTimeout(loadQuestions, 4000);
+            questionIndex++;
         }
     }
 
-    //FUNCTION TIMER STOP=======================================================
-    function intervalStop() {
-        clearInterval(timer);
+    //LOAD QUESTIONS=================================
+    function loadQuestions(correct) {
+        if (questionIndex < myQuestions.length) {
+            document.querySelector("#timer").innerHTML = "Time Remaining: " + timer;
+            document.querySelector("#question").innerHTML = (myQuestions[questionIndex].question);
+            number = 15;
+            run();
+            decrement();
+            answers();
+        }
+        else {
+            $(".quiz").hide();
+            results();
+        }
     }
 
-    //on click stoppage
+    //LOAD ANSWERS===================================
+    function answers() {
+        for (var i = 0; i < 3; i++) {
+            console.log(myQuestions[questionIndex].answers[i])
+            document.querySelector("#options").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + " '>" + "</input>");
+            $("input").attr("class", "buttonClicked");
+            $("input").attr("id", "buttonStop");
+        }
+    }
+
+    //DISABLE BUTTONS===================================    
     $("#options").on("click", function () {
-        intervalStop();
+        clearInterval(timer);
         $(".buttonClicked").prop("disabled", true);
         setTimeout(function () {
-        $(".buttonClicked").prop("disabled", false);
+            $(".buttonClicked").prop("disabled", false);
         }, 5000);
-        // console.log(clickedButton);
     });
 
 
-    //GAME START FUNCTION=========================================================================================
-    //Create function to set up questions and answer options
-    function gameStart() {
 
-        if (indexQuestions <= (myQuestions.length)) {
-            document.querySelector("#question").innerHTML = (myQuestions[indexQuestions].question);
 
-            //BIG PROBLEM HERE=================
 
-              for (var i = 0; i < 3; i++) {
-                console.log(myQuestions[indexQuestions].answers[i])
-                document.querySelector("#options").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[indexQuestions].answers[i] + " '>" + "</input>");
-                $("input").attr("class", "buttonClicked");
-                $("input").attr("id", "buttonStop");
-            }
-
-            correctAnswers = myQuestions[indexQuestions].correct;
-            return correctAnswers;
-        }
-        else {
-            $("#question").append("Game Over");
-        }
+    //RESULTS=============================================
+    function results() {
+        $(".quiz").hide();
+        document.querySelector("#results").innerHTML = ("<p> You guessed " + correctAnswers + " correct.<p> You guessed " + wrongAnswers + " incorrect.</p>");
     }
 
-    
-    console.log(correctAnswers);
-    
-   
-
-    //ANSWER CHOICE AND CORRECT ANSWERS===================================================================
-    //Assign a button class to pick up the value of the button clicked 
-
-    // $(".buttonClicked").on("click", function () {
-    //     clickedButton = $(this).val();
-    //     // console.log(clickedButton);
-
-    // });
-    // function checkResults() {
-    //     if (number === 0) {
-    //         alert("Time's Up");
-    //     }
-    // }
-    // checkResults();
-
-    //if clicked button value = myQuestions[indexQuestions].correct
-    //then alert user on page that they are correct
-    //push correct answer to total correct 
-    //Next question
-    //else if click button value !== myQuestions[indexQuestions].correct
-    //then alert the user that they are incorrect and show right answer
-    //push to incorrect
-    //Next question
-
-    //RESULTS FUNCTION======================================================================================
-    //Display total correct
-    //Display total wrong
-    //Display total unanswered
-
-    //RESET FUNCTION========================================================================================
 
 });
