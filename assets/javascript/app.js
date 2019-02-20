@@ -44,7 +44,6 @@ $(document).ready(function () {
             correct: "Puffling",
         },
     ];
-    console.log(myQuestions);
 
     //HIDE START SCREEN================================
     $("#clickStart").on("click", function () {
@@ -66,6 +65,7 @@ $(document).ready(function () {
         if (number === 0) {
             clearInterval(timer);
             document.querySelector("#question").innerHTML = ("The correct answer is <button>" + myQuestions[questionIndex].correct + "</button>");
+            //console.log(myQuestions[questionIndex].correct);
             $("#options").html("");
             setTimeout(loadQuestions, 4000);
             questionIndex++;
@@ -81,9 +81,8 @@ $(document).ready(function () {
             run();
             decrement();
             for (var i = 0; i < 3; i++) {
-                //need to empty div 
-                console.log(myQuestions[questionIndex].answers[i])
-                document.querySelector("#options").innerHTML += ("<input type='submit' name='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + " '>" + "</input>");
+                //console.log(myQuestions[questionIndex].answers[i])
+                document.querySelector("#options").innerHTML += ("<input type='submit' name='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + "'>" + "</input>");
                 $("input").attr("class", "buttonClicked");  
             }
         }
@@ -99,16 +98,27 @@ $(document).ready(function () {
         $(".buttonClicked").prop("disabled", true);
         setTimeout(function () {
             $(".buttonClicked").prop("disabled", false);
-        }, 5000);
+        }, 4000);
     });
 
     //CORRECT ANSWERS====================================
+    var currentAnswer = myQuestions[questionIndex].correct;
+    //need to fix!!!!!!!!
+    $("#options").on("click", function(){
+        var value = $(this).value;
+        if (value === currentAnswer) {
+            document.querySelector("#question").innerHTML = ("You are correct!");
+            console.log(myQuestions[questionIndex].correct);
+            $("#options").html("");
+            setTimeout(loadQuestions, 4000);
+            questionIndex++;
+            correctAnswers++;
+        }
+    })
 
     //RESULTS=============================================
     function results() {
         $(".quiz").hide();
         document.querySelector("#results").innerHTML = ("<p> You guessed " + correctAnswers + " correct.<p> You guessed " + wrongAnswers + " incorrect.</p>");
     }
-
-
 });
