@@ -5,7 +5,7 @@ $(document).ready(function () {
     var unanswered = 0;
     var number = 15;
     var questionIndex = 0;
-    var correct = "";
+
     //Question, Answer, and Answer Choices===================
     var myQuestions = [
         {
@@ -28,7 +28,7 @@ $(document).ready(function () {
         $("#timer").show();
         loadQuestions();
     });
-    
+
     //SET TIMER FUNCTION=====================================
     function run() {
         clearInterval(timer);
@@ -40,36 +40,31 @@ $(document).ready(function () {
         // Why does this need to be declared in the decrement function? Is it a scope issue?
         if (number === 0) {
             clearInterval(timer);
-
             document.querySelector("#question").innerHTML = "The correct answer is " + myQuestions[questionIndex].correct;
+            $("#options").html("");
             setTimeout(loadQuestions, 4000);
             questionIndex++;
         }
     }
 
     //LOAD QUESTIONS=================================
-    function loadQuestions(correct) {
+    function loadQuestions() {
         if (questionIndex < myQuestions.length) {
             document.querySelector("#timer").innerHTML = "Time Remaining: " + timer;
             document.querySelector("#question").innerHTML = (myQuestions[questionIndex].question);
             number = 15;
             run();
             decrement();
-            answers();
+            for (var i = 0; i < 3; i++) {
+                //need to empty div 
+                console.log(myQuestions[questionIndex].answers[i])
+                document.querySelector("#options").innerHTML += ("<input type='submit' name='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + " '>" + "</input>");
+                $("input").attr("class", "buttonClicked");  
+            }
         }
         else {
             $(".quiz").hide();
             results();
-        }
-    }
-
-    //LOAD ANSWERS===================================
-    function answers() {
-        for (var i = 0; i < 3; i++) {
-            console.log(myQuestions[questionIndex].answers[i])
-            document.querySelector("#options").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + " '>" + "</input>");
-            $("input").attr("class", "buttonClicked");
-            $("input").attr("id", "buttonStop");
         }
     }
 
@@ -82,9 +77,7 @@ $(document).ready(function () {
         }, 5000);
     });
 
-
-
-
+    //CORRECT ANSWERS====================================
 
     //RESULTS=============================================
     function results() {
