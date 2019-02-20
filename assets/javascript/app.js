@@ -45,6 +45,8 @@ $(document).ready(function () {
         },
     ];
 
+    $("#timer").hide();
+
     //HIDE START SCREEN================================
     $("#clickStart").on("click", function () {
         $(this).hide();
@@ -64,9 +66,9 @@ $(document).ready(function () {
         // Why does this need to be declared in the decrement function? Is it a scope issue?
         if (number === 0) {
             clearInterval(timer);
-            document.querySelector("#question").innerHTML = ("The correct answer is <button>" + myQuestions[questionIndex].correct + "</button>");
+            document.querySelector("#question").innerHTML = ("The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
             //console.log(myQuestions[questionIndex].correct);
-            $("#options").html("");
+            $("#answers").html("");
             setTimeout(loadQuestions, 4000);
             questionIndex++;
         }
@@ -82,7 +84,7 @@ $(document).ready(function () {
             decrement();
             for (var i = 0; i < 3; i++) {
                 //console.log(myQuestions[questionIndex].answers[i])
-                document.querySelector("#options").innerHTML += ("<input type='submit' name='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + "'>" + "</input>");
+                document.querySelector("#answers").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + "'>" + "</input>");
                 $("input").attr("class", "buttonClicked");  
             }
         }
@@ -93,7 +95,7 @@ $(document).ready(function () {
     }
 
     //DISABLE BUTTONS===================================    
-    $("#options").on("click", function () {
+    $("#answers").on("click", function () {
         clearInterval(timer);
         $(".buttonClicked").prop("disabled", true);
         setTimeout(function () {
@@ -102,19 +104,21 @@ $(document).ready(function () {
     });
 
     //CORRECT ANSWERS====================================
-    var currentAnswer = myQuestions[questionIndex].correct;
-    //need to fix!!!!!!!!
-    $("#options").on("click", function(){
-        var value = $(this).value;
-        if (value === currentAnswer) {
-            document.querySelector("#question").innerHTML = ("You are correct!");
-            console.log(myQuestions[questionIndex].correct);
-            $("#options").html("");
-            setTimeout(loadQuestions, 4000);
-            questionIndex++;
-            correctAnswers++;
-        }
-    })
+
+    
+    // var currentAnswer = myQuestions[questionIndex].correct;
+    // //need to fix!!!!!!!!
+    // $("#answers").on("click", function(){
+    //     var value = $(this).value;
+    //     if (value === currentAnswer) {
+    //         document.querySelector("#question").innerHTML = ("You are correct!");
+    //         console.log(myQuestions[questionIndex].correct);
+    //         $("#answers").html("");
+    //         setTimeout(loadQuestions, 4000);
+    //         questionIndex++;
+    //         correctAnswers++;
+    //     }
+    // })
 
     //RESULTS=============================================
     function results() {

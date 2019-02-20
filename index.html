@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Reset CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <!--Typography-->
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
@@ -22,53 +24,32 @@
     <div class="pageWrapper">
         <div class="startScreen">
             <h1>Trivia Game</h1>
-            
             <div class="startImages">
-                <!-- <img src="assets/images/puffin.png" alt="Flamingo" width="100" height="150" /> -->
-                <img src="assets/images/tux.png" alt="Penguin" height="150" />
-                <img src="assets/images/vulture.png" alt="Vulture" height="150" />
-                <img src="assets/images/owl.png" alt="Owl" height="150" />
+                <img id="pen" src="assets/images/tux.png" alt="Penguin" height="150" />
+                <img id="vul" src="assets/images/vulture.png" alt="Vulture" height="150" />
+                <img id="owl" src="assets/images/owl.png" alt="Owl" height="150" />
             </div>
             <button id="clickStart" name="start" type="button" value="startButton">Start</button>
         </div>
         <!--Game Area-->
         <div class="quiz">
-            <h3 id="timer"></h3>
-            <section class="questionArea">
+            <h2 id="timer"></h2>
+            <section>
                 <p id="question"></p>
             </section>
             <section id="answers">
-                <label id="options"></label>
-            </section>
-            <section id="correctAnswer">
-                <p id="alertCorrect"></p>
             </section>
         </div>
             
         <!-- Results Area -->
-        <div id="results">
-
-        </div>
-
-
-
-
-
-
-
-
+        <div id="results"></div>
     </div>
-
-
-
-
 
     <!--Footer-->
 
 
     <!--JavaScript-->
     <script src="assets/javascript/app.js"></script>
-
 
 </body>
 
