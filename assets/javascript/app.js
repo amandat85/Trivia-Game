@@ -45,6 +45,7 @@ $(document).ready(function () {
         },
     ];
 
+    //ON LOAD==========================================
     $("#timer").hide();
 
     //HIDE START SCREEN================================
@@ -55,7 +56,7 @@ $(document).ready(function () {
         loadQuestions();
     });
 
-    //SET TIMER FUNCTION=====================================
+    //SET TIMER FUNCTION================================
     function run() {
         clearInterval(timer);
         timer = setInterval(decrement, 1000);
@@ -74,7 +75,7 @@ $(document).ready(function () {
         }
     }
 
-    //LOAD QUESTIONS=================================
+    //LOAD QUESTIONS===================================
     function loadQuestions() {
         if (questionIndex < myQuestions.length) {
             document.querySelector("#timer").innerHTML = "Time Remaining: " + timer;
@@ -84,8 +85,9 @@ $(document).ready(function () {
             decrement();
             for (var i = 0; i < 3; i++) {
                 //console.log(myQuestions[questionIndex].answers[i])
-                document.querySelector("#answers").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + "'>" + "</input>");
-                $("input").attr("class", "buttonClicked");  
+                // document.querySelector("#answers").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + "'>" + "</input>");
+                document.querySelector("#answers").innerHTML += ("<button id='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + "'>" + myQuestions[questionIndex].answers[i] + "</button>");
+                $("input").addClass("buttonClicked");
             }
         }
         else {
@@ -104,21 +106,21 @@ $(document).ready(function () {
     });
 
     //CORRECT ANSWERS====================================
-
     
-    // var currentAnswer = myQuestions[questionIndex].correct;
-    // //need to fix!!!!!!!!
-    // $("#answers").on("click", function(){
-    //     var value = $(this).value;
-    //     if (value === currentAnswer) {
-    //         document.querySelector("#question").innerHTML = ("You are correct!");
-    //         console.log(myQuestions[questionIndex].correct);
-    //         $("#answers").html("");
-    //         setTimeout(loadQuestions, 4000);
-    //         questionIndex++;
-    //         correctAnswers++;
-    //     }
-    // })
+
+    $("#answers").on("click", function(){
+        alert("clicked");
+        // $(this).value;
+        // if (value === myQuestions[questionIndex].correct) {
+        //     alert("correct");
+        //     document.querySelector("#question").innerHTML = ("You are correct!");
+        //     console.log(myQuestions[questionIndex].correct);
+        //     $("#answers").html("");
+        //     setTimeout(loadQuestions, 4000);
+        //     questionIndex++;
+        //     correctAnswers++;
+    //}
+    })
 
     //RESULTS=============================================
     function results() {

@@ -1,8 +1,7 @@
-/* * {
+* {
    margin: none;
    padding: none; 
-} */
-
+}
 body {
     background-image: url("../../assets/images/rainbow.jpg");
     background-size: cover;
@@ -14,13 +13,11 @@ body {
     font-size: 16pt;
     line-height: 150%;
 }
-
 h1 {
     font-family: 'Luckiest Guy', cursive;
     font-size: 60pt;
     margin-top: 75px;
 }
-
 h2 {
     font-family: 'Rubik', sans-serif;
     margin-top: 85px;
@@ -32,15 +29,12 @@ h2 {
     padding-top:20px;
     padding-bottom:20px;
     border-radius:50%;
-    
 }
-
 p {
     font-family: 'Rubik', sans-serif;
     font-size: 18pt;
     margin-top: 5%;
 }
-
 .pageWrapper {
     position: absolute;
     border-style: solid;
@@ -54,7 +48,6 @@ p {
     background-color: #ABDEC8;
     text-align: center;
 }
-
 #clickStart {
     padding: 50px 300px 50px 300px;
     margin-top: 50px;
@@ -64,11 +57,9 @@ p {
     font-size: 25pt;
     border-radius: 25%;
 }
-
 .startImages {
     margin-top: 100px;
 }
-
 button, .buttonClicked {
     padding: 10px 25px 10px 25px;
     margin-top: 75px;
@@ -90,6 +81,18 @@ button, .buttonClicked {
         padding: 50px 200px 50px 200px;
         margin-top: 50px;
     }
+    h2 {
+        font-family: 'Rubik', sans-serif;
+        margin-top: 85px;
+        font-size: 20pt;
+        background-color:#445CA5;
+        color: #ffffff;
+        margin-left: 300px;
+        margin-right: 300px;
+        padding-top:20px;
+        padding-bottom:20px;
+        border-radius:50%;
+    }
 }
 @media screen and (min-width: 981px) and (max-width: 1024px) {
     .pageWrapper {
@@ -101,6 +104,18 @@ button, .buttonClicked {
      #clickStart {
         padding: 50px 200px 50px 200px;
         margin-top: 50px;
+    }
+        h2 {
+        font-family: 'Rubik', sans-serif;
+        margin-top: 85px;
+        font-size: 20pt;
+        background-color:#445CA5;
+        color: #ffffff;
+        margin-left: 300px;
+        margin-right: 300px;
+        padding-top:20px;
+        padding-bottom:20px;
+        border-radius:50%;
     }
 }
 
@@ -115,6 +130,18 @@ button, .buttonClicked {
         padding: 50px 150px 50px 150px;
         margin-top: 50px;
     }
+    h2 {
+    font-family: 'Rubik', sans-serif;
+    margin-top: 85px;
+    font-size: 20pt;
+    background-color:#445CA5;
+    color: #ffffff;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding-top:20px;
+    padding-bottom:20px;
+    border-radius:50%;
+    }
 }
 
 @media screen and (min-width: 641px) and (max-width: 768px) {
@@ -128,6 +155,18 @@ button, .buttonClicked {
         padding: 50px 100px 50px 100px;
         margin-top: 50px;
     }
+    h2 {
+        font-family: 'Rubik', sans-serif;
+        margin-top: 85px;
+        font-size: 20pt;
+        background-color:#445CA5;
+        color: #ffffff;
+        margin-left: 100px;
+        margin-right: 100px;
+        padding-top:20px;
+        padding-bottom:20px;
+        border-radius:50%;
+    }
 }
 
 @media screen and (min-width: 481px) and (max-width: 640px) {
@@ -137,11 +176,9 @@ button, .buttonClicked {
         left: 2rem;
         width: 90%;
     }
-
     .startScreen {
         position: relative;
     }
-
      #clickStart {
         position: absolute;
         padding: 50px 75px 50px 75px;
@@ -150,9 +187,7 @@ button, .buttonClicked {
     }
     .startImages {
         visibility: hidden;
-        /* margin-top: 1rem; */
     }
-
     button, .buttonClicked {
         padding: 10px 25px 10px 25px;
         margin-top: 20px;
@@ -162,21 +197,25 @@ button, .buttonClicked {
         font-family: 'Rubik', sans-serif;
         font-size: 16pt;
     }
-
     h1 {
         line-height: 5rem
     }
-
     h2 {
         font-family: 'Rubik', sans-serif;
-        margin-top: 50px;
+        margin-top: 40px;
         font-size: 20pt;
+        background-color:#445CA5;
+        color: #ffffff;
+        margin-left: 75px;
+        margin-right: 75px;
+        padding-top: 20px;
+        padding-bottom:20px;
+        border-radius:50%;
     }
-    
     p {
         font-family: 'Rubik', sans-serif;
         font-size: 18pt;
-        margin-top: 10%;
+        margin-top: 5%;
     }
 }
 
@@ -184,8 +223,8 @@ button, .buttonClicked {
     .pageWrapper {
         margin-top: 2rem;
         top: 100px;
-        left: 1rem;
-        width: 90%;
+        left: 0rem;
+        width: 100%;
     }
     .startScreen {
         position: relative;
@@ -194,18 +233,17 @@ button, .buttonClicked {
         position: absolute;
         padding: 50px 75px 50px 75px;
         top: 17rem;
-        left: 4rem;
+        left: 5rem;
     }
     .startImages {
         visibility: hidden;
-        /* margin-top: 1rem; */
     }
     h1 {
         line-height: 5rem
     }
     h2 {
         font-family: 'Rubik', sans-serif;
-        margin-top: 35px;
+        margin-top: 20px;
         font-size: 20pt;
         margin-left: 20px;
         margin-right: 20px;
@@ -213,11 +251,12 @@ button, .buttonClicked {
         padding-bottom:20px;
         border-radius:50%;
     }
-    
     p {
         font-family: 'Rubik', sans-serif;
         font-size: 18pt;
         margin-top: 10%;
+        margin-left: 10px;
+        margin-right: 10px;
     }
     button, .buttonClicked {
         padding: 10px 25px 10px 25px;
