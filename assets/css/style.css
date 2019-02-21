@@ -41,9 +41,8 @@ p {
     border-color: #ABDEC8;
     border-radius: 1%;
     top: 100px;
-    left: 175px;
-    right: 175px;
-    width: 75%;
+    left: 70px;
+    width: 90%;
     height: 575px;
     background-color: #ABDEC8;
     text-align: center;
@@ -221,25 +220,36 @@ button, .buttonClicked {
 
 @media screen and (min-width: 320px) and (max-width: 480px) {
     .pageWrapper {
-        margin-top: 2rem;
-        top: 100px;
+        margin-top: 1rem;
+        top: 45px;
         left: 0rem;
         width: 100%;
+        height: 40rem;
     }
     .startScreen {
         position: relative;
     }
-     #clickStart, #playAgain {
+    #clickStart{
         position: absolute;
         padding: 50px 75px 50px 75px;
-        top: 17rem;
+        top: 20rem;
         left: 5rem;
     }
+    #playAgain {
+        position: absolute;
+        padding: 40px 75px 40px 75px;
+        top: 27rem;
+        left: 3rem;
+    }
     .startImages {
-        visibility: hidden;
+        display: inline-block;
+        position: absolute;
+        top: 5rem;
+        left: 2rem;
     }
     h1 {
-        line-height: 5rem
+        line-height: 5rem;
+        font-size: 55pt;
     }
     h2 {
         font-family: 'Rubik', sans-serif;
