@@ -63,7 +63,7 @@ $(document).ready(function () {
         document.querySelector("#timer").innerHTML = ("Time Remaining: " + number);
         if (number === 0) {
             clearInterval(timer);
-            document.querySelector("#question").innerHTML = ("The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
+            document.querySelector("#question").innerHTML = ("Time's Up! `The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
             $("#answers").html("");
             setTimeout(loadQuestions, 4000);
             unanswered++;
@@ -98,7 +98,7 @@ $(document).ready(function () {
     $("#answers").on("click", function (event) {
         if ($(event.target).attr("data-answer") === myQuestions[questionIndex].correct) {
             clearInterval(timer);
-            document.querySelector("#question").innerHTML = ("Correct");
+            document.querySelector("#question").innerHTML = ("Excellent. You know your bird facts");
             $("#answers").html("");
             setTimeout(loadQuestions, 4000);
             correctAnswers++;
@@ -106,7 +106,7 @@ $(document).ready(function () {
         }
         else {
             clearInterval(timer);
-            document.querySelector("#question").innerHTML = ("The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
+            document.querySelector("#question").innerHTML = ("Sorry. The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
             $("#answers").html("");
             setTimeout(loadQuestions, 4000);
             wrongAnswers++;
