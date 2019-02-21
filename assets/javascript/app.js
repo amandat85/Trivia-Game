@@ -1,12 +1,11 @@
 $(document).ready(function () {
-    //VARIALBES====================================
+    //VARIALBES============================================================================================
     var correctAnswers = 0;
     var wrongAnswers = 0;
     var unanswered = 0;
     var number = 15;
     var questionIndex = 0;
-
-    //Question, Answer, and Answer Choices===================
+    //Question, Answer, and Answer Choices================================================================
     var myQuestions = [
         {
             question: "What is a group of flamingos called?",
@@ -44,19 +43,17 @@ $(document).ready(function () {
             correct: "Puffling",
         },
     ];
-
-    //ON LOAD==========================================
+    //ON LOAD===================================================================================================
     $("#timer").hide();
-
-    //HIDE START SCREEN================================
-    $("#clickStart").on("click", function () {
+    //HIDE START SCREEN=========================================================================================
+    $("#clickStart").on("click", function (e) {
         $(this).hide();
         $(".startImages").hide();
+        $("#answers").hide()
         $("#timer").show();
         loadQuestions();
     });
-
-    //SET TIMER FUNCTION================================
+    //SET TIMER FUNCTION=======================================================================================
     function run() {
         clearInterval(timer);
         timer = setInterval(decrement, 1000);
@@ -64,7 +61,6 @@ $(document).ready(function () {
     function decrement() {
         number--;
         document.querySelector("#timer").innerHTML = ("Time Remaining: " + number);
-        // Why does this need to be declared in the decrement function? Is it a scope issue?
         if (number === 0) {
             clearInterval(timer);
             document.querySelector("#question").innerHTML = ("The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
@@ -74,8 +70,7 @@ $(document).ready(function () {
             questionIndex++;
         }
     }
-
-    //LOAD QUESTIONS===================================
+    //LOAD QUESTIONS==========================================================================================
     function loadQuestions() {
         if (questionIndex < myQuestions.length) {
             document.querySelector("#timer").innerHTML = "Time Remaining: " + timer;
@@ -90,17 +85,16 @@ $(document).ready(function () {
             results();
         }
     }
-
-    //ANSWER OPTIONS===============================================
+    //ANSWER OPTIONS==========================================================================================
     function answerOptions() {
         for (var i = 0; i < 3; i++) {
+            $("#answers").show();
             document.querySelector("#answers").innerHTML += ("<button id='opt" + i + "' data-answer='" + myQuestions[questionIndex].answers[i] + "'>" + myQuestions[questionIndex].answers[i] + "</button>");
             $("button").addClass("buttonClicked");
             console.log(myQuestions[questionIndex].correct);
         }
     }
-    
-    //CHECK ANSWERS====================================
+    //CHECK ANSWERS==========================================================================================
     $("#answers").on("click", function (event) {
         if ($(event.target).attr("data-answer") === myQuestions[questionIndex].correct) {
             clearInterval(timer);
@@ -119,13 +113,34 @@ $(document).ready(function () {
             questionIndex++;
             console.log("wrong");
         }
-    })
-
-    //RESULTS=============================================
+    });
+    //RESULTS================================================================================================
     function results() {
-        $(".quiz").hide();
-        document.querySelector("#results").innerHTML = ("<p> You guessed " + correctAnswers + " correct.<p> You guessed " + wrongAnswers + " incorrect.</p><p> You left" + unanswered + "unanswered</p>");
+        $("#results").show();
+        document.querySelector("#results").innerHTML = ("<p> You guessed " + correctAnswers + " correct.<p> You guessed " + wrongAnswers + " incorrect.</p><p> You left " + unanswered + " unanswered</p>");
+        var target = document.getElementById("results");
+        var newBtn = document.createElement("button");
+        newBtn.innerHTML = "Play Again";
+        target.appendChild(newBtn);
+        newBtn.setAttribute("id", "playAgain");
     }
-
-    //RESET===============================================
+    //RESET===================================================================================================
+    function reset() {
+        $("#results").on("click", function (e) {
+            clearInterval(timer);
+            correctAnswers = 0;
+            wrongAnswers = 0;
+            unanswered = 0;
+            number = 15;
+            questionIndex = 0;
+            $("#question").html("");
+            $("#results").html("");
+            $("#results").hide();
+            $(".startImages").show();
+            $("#clickStart").show();
+            $(".quiz").show();
+            $("#timer").hide();
+        });
+    }
+    reset();
 });
