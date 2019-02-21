@@ -83,12 +83,7 @@ $(document).ready(function () {
             number = 15;
             run();
             decrement();
-            for (var i = 0; i < 3; i++) {
-                //console.log(myQuestions[questionIndex].answers[i])
-                // document.querySelector("#answers").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + "'>" + "</input>");
-                document.querySelector("#answers").innerHTML += ("<button id='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + "'>" + myQuestions[questionIndex].answers[i] + "</button>");
-                $("input").addClass("buttonClicked");
-            }
+            answerOptions();
         }
         else {
             $(".quiz").hide();
@@ -96,7 +91,22 @@ $(document).ready(function () {
         }
     }
 
-    //DISABLE BUTTONS===================================    
+    //ANSWER OPTIONS===============================================
+    function answerOptions() {
+        for (var i = 0; i < 3; i++)
+            if (myQuestions[questionIndex].answers[i] === myQuestions[questionIndex].correct) {
+                document.querySelector("#answers").innerHTML += ("<button name='opt" + i + "' data-answer='" + myQuestions[questionIndex].answers[i] + "'>" + myQuestions[questionIndex].answers[i] + "</button>");
+                $("button").attr("id", "answer");
+            }
+            else {
+                document.querySelector("#answers").innerHTML += ("<button name='opt" + i + "' data-answer='" + myQuestions[questionIndex].answers[i] + "'>" + myQuestions[questionIndex].answers[i] + "</button>");
+                $("button").addClass("buttonClicked");
+            }
+        //console.log(myQuestions[questionIndex].answers[i])
+        // document.querySelector("#answers").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + "'>" + "</input>");
+    }
+
+    //DISABLE BUTTONS===================================  
     $("#answers").on("click", function () {
         clearInterval(timer);
         $(".buttonClicked").prop("disabled", true);
@@ -105,22 +115,15 @@ $(document).ready(function () {
         }, 4000);
     });
 
-    //CORRECT ANSWERS====================================
-    
+    //CHECK ANSWERS====================================
 
-    $("#answers").on("click", function(){
-        alert("clicked");
-        // $(this).value;
-        // if (value === myQuestions[questionIndex].correct) {
-        //     alert("correct");
-        //     document.querySelector("#question").innerHTML = ("You are correct!");
-        //     console.log(myQuestions[questionIndex].correct);
-        //     $("#answers").html("");
-        //     setTimeout(loadQuestions, 4000);
-        //     questionIndex++;
-        //     correctAnswers++;
-    //}
-    })
+
+    // var answers = $("#answers");
+    // $("#answers").on("click", function () {
+    //     alert("clicked");
+    //     answers.text($(this).attr("data-answer"));
+    //     console.log(data-answer);
+    // });
 
     //RESULTS=============================================
     function results() {
