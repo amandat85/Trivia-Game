@@ -70,6 +70,7 @@ $(document).ready(function () {
             document.querySelector("#question").innerHTML = ("The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
             $("#answers").html("");
             setTimeout(loadQuestions, 4000);
+            unanswered++;
             questionIndex++;
         }
     }
@@ -98,32 +99,32 @@ $(document).ready(function () {
             console.log(myQuestions[questionIndex].correct);
         }
     }
-
-    console.log(myQuestions[questionIndex].correct);
-
-
-
+    
     //CHECK ANSWERS====================================
-    //Not working
-    // function checkAnswers() {
-    $("#answers").on("click", function () {
+    $("#answers").on("click", function (event) {
+        if ($(event.target).attr("data-answer") === myQuestions[questionIndex].correct) {
+            clearInterval(timer);
+            document.querySelector("#question").innerHTML = ("Correct");
+            $("#answers").html("");
+            setTimeout(loadQuestions, 4000);
+            correctAnswers++;
+            questionIndex++;
+        }
+        else {
+            clearInterval(timer);
+            document.querySelector("#question").innerHTML = ("The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
+            $("#answers").html("");
+            setTimeout(loadQuestions, 4000);
+            wrongAnswers++;
+            questionIndex++;
+            console.log("wrong");
+        }
     })
-    //To pass data attribute - If button has data-answer === myQuestions[questionIndex].correct then do this
-
-    //DISABLE BUTTONS===================================  
-    $("#answers").on("click", function () {
-        clearInterval(timer);
-        $(".buttonClicked").prop("disabled", true);
-        setTimeout(function () {
-            $(".buttonClicked").prop("disabled", false);
-        }, 4000);
-    });
-
 
     //RESULTS=============================================
     function results() {
         $(".quiz").hide();
-        document.querySelector("#results").innerHTML = ("<p> You guessed " + correctAnswers + " correct.<p> You guessed " + wrongAnswers + " incorrect.</p>");
+        document.querySelector("#results").innerHTML = ("<p> You guessed " + correctAnswers + " correct.<p> You guessed " + wrongAnswers + " incorrect.</p><p> You left" + unanswered + "unanswered</p>");
     }
 
     //RESET===============================================
