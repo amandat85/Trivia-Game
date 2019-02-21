@@ -11,36 +11,43 @@ $(document).ready(function () {
             question: "What is a group of flamingos called?",
             answers: ["Flock", "Pride", "Flamboyance"],
             correct: "Flamboyance",
+            funFact: "The backward bending 'knee' of a flamingo's leg is actually the bird's ankle. The actual knee is very close to the body and is not visible through the bird's plumage.",
         },
         {
             question: "Which is not a term for a group of vultures?",
             answers: ["Funeral", "Wake", "Venue"],
             correct: "Funeral",
+            funFact: "Vultures pee on their legs to cool off in hot weather.",
         },
         {
             question: "Penguins can stay underwater up to how many minutes?",
             answers: ["10 minutes", "20 minutes", "30 minutes"],
             correct: "20 minutes",
+            funFact: "Emperor penguin males incubate their eggs for two months in the winter without eating while the females are at sea.",
         },
         {
             question: "Owls have what type of vision?",
             answers: ["Binocular", "Myopic", "Persbyopic"],
             correct: "Binocular",
+            funFact: "An owl has three eyelids: one for blinking, one for sleeping, and one for keeping the eye clean and healthy.",
         },
         {
             question: "What is the average lifespan of a wild turkey?",
             answers: ["10-15 years", "2-4 years", "3-5 years"],
             correct: "3-5 years",
+            funFact: "A wild turkey’s gobble can be heard up to one mile away and is a primary means for a tom to communicate with his harem.",
         },
         {
             question: "Which is not a blue jay colour?",
             answers: ["Purple", "Brown", "White"],
             correct: "Brown",
+            funFact: "Blue jays communicate via loud screams and high-pitched calls. They are able to imitate sound of hawks, cats and humans.",
         },
         {
             question: "What is a baby puffin called?",
             answers: ["Puffling", "Duckling", "Kindle"],
             correct: "Puffling",
+            funFact: "A puffin’s beak (or bill) changes colour during the year. In winter, the beak has a dull grey colour, but in spring it blooms with an outrageous orange!",
         },
     ];
     //ON LOAD===================================================================================================
@@ -50,7 +57,6 @@ $(document).ready(function () {
         $(this).hide();
         $(".startImages").hide();
         $("#answers").hide()
-        $("#timer").show();
         loadQuestions();
     });
     //SET TIMER FUNCTION=======================================================================================
@@ -63,9 +69,10 @@ $(document).ready(function () {
         document.querySelector("#timer").innerHTML = ("Time Remaining: " + number);
         if (number === 0) {
             clearInterval(timer);
-            document.querySelector("#question").innerHTML = ("Time's Up! `The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
+            $("#timer").hide();
+            document.querySelector("#question").innerHTML = ("Time's Up! `The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button><p>Did you know?<br>" + myQuestions[questionIndex].funFact + "</p>");
             $("#answers").html("");
-            setTimeout(loadQuestions, 4000);
+            setTimeout(loadQuestions, 7000);
             unanswered++;
             questionIndex++;
         }
@@ -73,6 +80,7 @@ $(document).ready(function () {
     //LOAD QUESTIONS==========================================================================================
     function loadQuestions() {
         if (questionIndex < myQuestions.length) {
+            $("#timer").show();
             document.querySelector("#timer").innerHTML = "Time Remaining: " + timer;
             document.querySelector("#question").innerHTML = (myQuestions[questionIndex].question);
             number = 15;
@@ -98,17 +106,19 @@ $(document).ready(function () {
     $("#answers").on("click", function (event) {
         if ($(event.target).attr("data-answer") === myQuestions[questionIndex].correct) {
             clearInterval(timer);
-            document.querySelector("#question").innerHTML = ("Excellent. You know your bird facts");
+            $("#timer").hide();
+            document.querySelector("#question").innerHTML = ("Excellent. You know your bird facts. <br>Did you know?<br>" + myQuestions[questionIndex].funFact);
             $("#answers").html("");
-            setTimeout(loadQuestions, 4000);
+            setTimeout(loadQuestions, 7000);
             correctAnswers++;
             questionIndex++;
         }
         else {
             clearInterval(timer);
-            document.querySelector("#question").innerHTML = ("Sorry. The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
+            $("#timer").hide();
+            document.querySelector("#question").innerHTML = ("Sorry. The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button> <br>Did you know?<br>" + myQuestions[questionIndex].funFact);
             $("#answers").html("");
-            setTimeout(loadQuestions, 4000);
+            setTimeout(loadQuestions, 7000);
             wrongAnswers++;
             questionIndex++;
             console.log("wrong");
