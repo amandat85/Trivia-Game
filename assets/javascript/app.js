@@ -125,15 +125,26 @@ $(document).ready(function () {
     //Not working
     function checkAnswers() {
         $(".buttonClicked").on("click", function () {
-            if (answerBtn.text($(this).attr("data-answer")) === myQuestions[questionIndex].correct) {
-                alert("hello");
+            
+            
+            
+            // if (section.button[i + myQuestions[questionIndex].correct].clicked) {
+            //     if (section.button[i + myQuestions[questionIndex].correct].attr === myQuestions[questionIndex].correct){
+            //         alert("correct");
+            //     }
+            // }                
+                
+                
+                // answerBtn.text($(this).attr("data-answer")) === myQuestions[questionIndex].correct) {
+                // alert("hello");
+
                 // clearInterval(timer);
                 // document.querySelector("#question").innerHTML = ("Excellent. You are correct!");
                 // $("#answers").html("");
                 // setTimeout(loadQuestions, 4000);
                 // correctAnswers++;
                 // questionIndex++;
-            }
+            //}
             // else {
             //     clearInterval(timer);
             //     document.querySelector("#question").innerHTML = ("Sorry. The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
