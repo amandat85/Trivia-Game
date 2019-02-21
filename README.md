@@ -2,6 +2,7 @@
 A timed Trivia Game based on JavaScript and jQuery.
 
 ## Site
+https://amandat85.github.io/Trivia-Game/
 
 ## Languages and Tools Used
 * HTML
@@ -9,6 +10,7 @@ A timed Trivia Game based on JavaScript and jQuery.
 * jQuery
 * CSS
 * Google Fonts
+* Media Queries
 
 ## Rules
 * Players have 20 seconds to answer a multiple choice question.
