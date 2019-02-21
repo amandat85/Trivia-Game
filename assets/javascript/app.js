@@ -89,19 +89,28 @@ $(document).ready(function () {
             results();
         }
     }
-    
+
     //ANSWER OPTIONS===============================================
     function answerOptions() {
         for (var i = 0; i < 3; i++) {
-            document.querySelector("#answers").innerHTML += ("<button name='opt" + i + "' data-answer='" + myQuestions[questionIndex].answers[i] + "'>" + myQuestions[questionIndex].answers[i] + "</button>");
-            $("button").addClass("buttonClicked");
-            }
-            console.log(myQuestions[questionIndex].correct);
-            
-            
-        //console.log(myQuestions[questionIndex].answers[i])
-        // document.querySelector("#answers").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + "'>" + "</input>");
+            var answerBtn = $("<button>");
+            answerBtn.addClass("buttonClicked");
+            answerBtn.attr("data-answer", myQuestions[questionIndex].answers[i]);
+            answerBtn.text(myQuestions[questionIndex].answers[i]);
+            $("#answers").append(answerBtn);
+            $(".buttonClicked").on("click", function(){
+                answerBtn.text($(this).attr("data-answer"));
+            })
+        }
     }
+
+    console.log(myQuestions[questionIndex].correct);
+
+    // document.querySelector("#answers").innerHTML += ("<button name='opt" + i + "' data-answer='" + myQuestions[questionIndex].answers[i] + "'>" + myQuestions[questionIndex].answers[i] + "</button>");
+    // $("button").addClass("buttonClicked");
+    //console.log(myQuestions[questionIndex].answers[i])
+    // document.querySelector("#answers").innerHTML += ("<input type='button' name='opt" + i + "' value='" + myQuestions[questionIndex].answers[i] + "'>" + "</input>");
+
 
     //DISABLE BUTTONS===================================  
     $("#answers").on("click", function () {
@@ -114,31 +123,31 @@ $(document).ready(function () {
 
     //CHECK ANSWERS====================================
     //Not working
-function checkAnswers(){
-    $(".buttonClicked").on("click", function () {
-        if($(".buttonClicked").textContent($(this).attr(data-answer))=== "flamboyance"){
-            alert("hello");
-            // clearInterval(timer);
-            // document.querySelector("#question").innerHTML = ("Excellent. You are correct!");
-            // $("#answers").html("");
-            // setTimeout(loadQuestions, 4000);
-            // correctAnswers++;
-            // questionIndex++;
-        }
-        // else {
-        //     clearInterval(timer);
-        //     document.querySelector("#question").innerHTML = ("Sorry. The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
-        //     $("#answers").html("");
-        //     setTimeout(loadQuestions, 4000);
-        //     wrongAnswers++;
-        //     questionIndex++;
-        // }
+    function checkAnswers() {
+        $(".buttonClicked").on("click", function () {
+            if (answerBtn.text($(this).attr("data-answer")) === myQuestions[questionIndex].correct) {
+                alert("hello");
+                // clearInterval(timer);
+                // document.querySelector("#question").innerHTML = ("Excellent. You are correct!");
+                // $("#answers").html("");
+                // setTimeout(loadQuestions, 4000);
+                // correctAnswers++;
+                // questionIndex++;
+            }
+            // else {
+            //     clearInterval(timer);
+            //     document.querySelector("#question").innerHTML = ("Sorry. The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
+            //     $("#answers").html("");
+            //     setTimeout(loadQuestions, 4000);
+            //     wrongAnswers++;
+            //     questionIndex++;
+            // }
 
-    });
-}
-checkAnswers();
+        });
+    }
+    checkAnswers();
     //To pass data attribute - If button has data-answer === myQuestions[questionIndex].correct then do this
-    
+
     //RESULTS=============================================
     function results() {
         $(".quiz").hide();
