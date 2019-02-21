@@ -105,61 +105,19 @@ $(document).ready(function () {
 
     //CHECK ANSWERS====================================
     //Not working
-    function checkAnswers() {
-        $("#answers").on("click", function () {
-            var optionZero = document.querySelector("#opt0");
-            //console.log(optionZero);
-            var optionOne = document.querySelector("#opt1");
-            //console.log(optionOne);
-            var optionTwo = document.querySelector("#opt2");
-            //console.log(optionTwo.textContent);
-
-            if (optionZero.textContent === myQuestions[questionIndex].correct) {
-                clearInterval(timer);
-                document.querySelector("#question").innerHTML = ("Excellent. You are correct!");
-                $("#answers").html("");
-                setTimeout(loadQuestions, 4000);
-                correctAnswers++;
-                questionIndex++;
-            }
-            else if (optionOne.textContent === myQuestions[questionIndex].correct) {
-                clearInterval(timer);
-                document.querySelector("#question").innerHTML = ("Excellent. You are correct!");
-                $("#answers").html("");
-                setTimeout(loadQuestions, 4000);
-                wrongAnswers++;
-                questionIndex++;
-            }
-
-            else if (optionTwo.textContent === myQuestions[questionIndex].correct) {
-                clearInterval(timer);
-                document.querySelector("#question").innerHTML = ("Excellent. You are correct!");
-                $("#answers").html("");
-                setTimeout(loadQuestions, 4000);
-                correctAnswers++;
-                questionIndex++;
-            }
-            else {
-                clearInterval(timer);
-                document.querySelector("#question").innerHTML = ("Sorry. The correct answer is <br><button>" + myQuestions[questionIndex].correct + "</button>");
-                $("#answers").html("");
-                setTimeout(loadQuestions, 4000);
-                wrongAnswers++;
-                questionIndex++;
-            }
-        });
-    }
-    checkAnswers();
+    // function checkAnswers() {
+    $("#answers").on("click", function () {
+    })
     //To pass data attribute - If button has data-answer === myQuestions[questionIndex].correct then do this
 
     //DISABLE BUTTONS===================================  
-    // $("#answers").on("click", function () {
-    //     clearInterval(timer);
-    //     $(".buttonClicked").prop("disabled", true);
-    //     setTimeout(function () {
-    //         $(".buttonClicked").prop("disabled", false);
-    //     }, 4000);
-    // });
+    $("#answers").on("click", function () {
+        clearInterval(timer);
+        $(".buttonClicked").prop("disabled", true);
+        setTimeout(function () {
+            $(".buttonClicked").prop("disabled", false);
+        }, 4000);
+    });
 
 
     //RESULTS=============================================
