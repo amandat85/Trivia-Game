@@ -5,6 +5,7 @@ $(document).ready(function () {
     var unanswered = 0;
     var number = 15;
     var questionIndex = 0;
+    var timer =0;
     //Question, Answer, and Answer Choices================================================================
     var myQuestions = [
         {
@@ -12,6 +13,7 @@ $(document).ready(function () {
             answers: ["Flock", "Pride", "Flamboyance"],
             correct: "Flamboyance",
             funFact: "The backward bending 'knee' of a flamingo's leg is actually the bird's ankle. The actual knee is very close to the body and is not visible through the bird's plumage.",
+            //graphic: "./assets/images/flamingos.jpeg",
         },
         {
             question: "Which is not a term for a group of vultures?",
@@ -49,6 +51,22 @@ $(document).ready(function () {
             correct: "Puffling",
             funFact: "A puffin’s beak (or bill) changes colour during the year. In winter, the beak has a dull grey colour, but in spring it blooms with an outrageous orange!",
         },
+        {   question: "How many stomachs do ostriches have?",
+            answers: ["One", "Two", "Three"],
+            correct: "Three",
+            funFact: "The ostrich has the largest eye of any land animal, measuring almost 5 cm across, allowing predators such as lions to be seen at long distances.",
+        },
+        {
+            question: "A woodpeckers tongue is how many times the length of its bill?",
+            answers: ["3 times", "5 times", "2 times"],
+            correct: "3 times",
+            funFact: "Woodpeckers peck wood at a speed of 20 times per second.",
+        },
+        {   question: "What is a hummingbird's average heartbeat?",
+            answers: ["1000 beats per minute", "1200 beats per minute", "1500 beats per minute"],
+            correct: "1200 beats per minute",
+            funFact: "A hummingbird’s wings beat between 50 and 200 flaps per second depending on the direction of flight, the purpose of their flight and the surrounding air conditions.",
+        }
     ];
     //ON LOAD===================================================================================================
     $("#timer").hide();
@@ -74,7 +92,7 @@ $(document).ready(function () {
             $("#answerAlert").show();
             document.querySelector("#answerAlert").innerHTML = ("<p class='answersArea'>Time's Up! The correct answer is: <br><button>" + myQuestions[questionIndex].correct + "</button><br><br>Did you know?<br><br>" + myQuestions[questionIndex].funFact + "</p>");
             $("#answers").html("");
-            setTimeout(loadQuestions, 000);
+            setTimeout(loadQuestions, 5000);
             unanswered++;
             questionIndex++;
         }
@@ -103,7 +121,6 @@ $(document).ready(function () {
             $("#answers").show();
             document.querySelector("#answers").innerHTML += ("<button id='opt" + i + "' data-answer='" + myQuestions[questionIndex].answers[i] + "'>" + myQuestions[questionIndex].answers[i] + "</button>");
             $("button").addClass("buttonClicked");
-            console.log(myQuestions[questionIndex].correct);
         }
     }
     //CHECK ANSWERS==========================================================================================
@@ -129,7 +146,6 @@ $(document).ready(function () {
             setTimeout(loadQuestions, 5000);
             wrongAnswers++;
             questionIndex++;
-            console.log("wrong");
         }
     });
     //RESULTS================================================================================================
