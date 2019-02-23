@@ -12,6 +12,8 @@ body {
     width: 100%;
     font-size: 16pt;
     line-height: 150%;
+    display: flex;
+    flex-direction: column;
 }
 h1 {
     font-family: 'Luckiest Guy', cursive;
@@ -78,6 +80,11 @@ button, .buttonClicked {
     font-size: 16pt;
 }
 
+.footer {
+    text-align: center;
+    flex-shrink: 0;
+}
+
 @media screen and (min-width: 1025px) and (max-width: 1280px) {
     .pageWrapper {
         top: 100px;
@@ -103,7 +110,7 @@ button, .buttonClicked {
         margin-right: 300px;
         padding-top:20px;
         padding-bottom:20px;
-        border-radius:50%;
+        border-radius: 50%;
     }
 }
 @media screen and (min-width: 981px) and (max-width: 1024px) {
@@ -154,6 +161,13 @@ button, .buttonClicked {
     padding-bottom:20px;
     border-radius:50%;
     }
+    .footer {
+        position: absolute;
+        top: 590px;
+        margin-left: 8rem;
+        text-align: center;
+        flex-shrink: 0;
+    }
 }
 
 @media screen and (min-width: 641px) and (max-width: 768px) {
@@ -179,6 +193,13 @@ button, .buttonClicked {
         padding-bottom:20px;
         border-radius:50%;
     }
+    .footer {
+        position: absolute;
+        top: 590px;
+        margin-left: 8rem;
+        text-align: center;
+        flex-shrink: 0;
+    }
 }
 
 @media screen and (min-width: 481px) and (max-width: 640px) {
@@ -195,7 +216,7 @@ button, .buttonClicked {
         position: absolute;
         padding: 50px 75px 50px 75px;
         top: 17rem;
-        left: 8rem;
+        left: 6rem;
     }
     #playAgain {
         position: absolute;
@@ -207,7 +228,7 @@ button, .buttonClicked {
         display: inline-block;
         position: absolute;
         top: 3rem;
-        left: 6rem;
+        left: 4rem;
     }
     button, .buttonClicked {
         padding: 10px 25px 10px 25px;
@@ -238,6 +259,13 @@ button, .buttonClicked {
         font-family: 'Rubik', sans-serif;
         font-size: 18pt;
         margin-top: 5%;
+    }
+    .footer {
+        position: absolute;
+        top: 600px;
+        margin-left: 40px;
+        text-align: center;
+        flex-shrink: 0;
     }
 }
 
@@ -300,4 +328,12 @@ button, .buttonClicked {
         font-family: 'Rubik', sans-serif;
         font-size: 16pt;
     }
+    .footer {
+        position: absolute;
+        top: 640px;
+        margin-left: 35px;
+        text-align: center;
+        flex-shrink: 0;
+    }
+
 }
