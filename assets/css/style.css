@@ -270,12 +270,16 @@ button, .buttonClicked {
 }
 
 @media screen and (min-width: 320px) and (max-width: 480px) {
+    body {
+        background-image: none;
+        background-color: #ABDEC8;
+        line-height: 110%;
+    }
     .pageWrapper {
-        margin-top: 1rem;
-        top: 30px;
+        top: 0px;
         left: 0rem;
         width: 100%;
-        height: 42rem;
+        height: 35rem;
     }
     .startScreen {
         position: relative;
@@ -284,19 +288,16 @@ button, .buttonClicked {
         position: absolute;
         padding: 50px 75px 50px 75px;
         top: 20rem;
-        left: 5rem;
+        left: 2rem;
     }
     #playAgain {
         position: absolute;
         padding: 40px 75px 40px 75px;
         top: 27rem;
-        left: 3rem;
+        left: 1rem;
     }
     .startImages {
-        display: inline-block;
-        position: absolute;
-        top: 5rem;
-        left: 2rem;
+        visibility: hidden;
     }
     h1 {
         line-height: 5rem;
@@ -314,7 +315,7 @@ button, .buttonClicked {
     }
     p {
         font-family: 'Rubik', sans-serif;
-        font-size: 16pt;
+        font-size: 14pt;
         margin-top: 10%;
         margin-left: 10px;
         margin-right: 10px;
