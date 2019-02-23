@@ -3,7 +3,7 @@ $(document).ready(function () {
     var correctAnswers = 0;
     var wrongAnswers = 0;
     var unanswered = 0;
-    var number = 15;
+    var number = 10;
     var questionIndex = 0;
     var timer =0;
     //Question, Answer, and Answer Choices================================================================
@@ -114,7 +114,7 @@ $(document).ready(function () {
             $("#question").show();
             document.querySelector("#timer").innerHTML = "Time Remaining: " + timer;
             document.querySelector("#question").innerHTML = (myQuestions[questionIndex].question);
-            number = 15;
+            number = 10;
             run();
             decrement();
             answerOptions();
@@ -191,7 +191,7 @@ $(document).ready(function () {
             correctAnswers = 0;
             wrongAnswers = 0;
             unanswered = 0;
-            number = 15;
+            number = 10;
             questionIndex = 0;
             $("#results").hide();
             $(".startImages").show();
