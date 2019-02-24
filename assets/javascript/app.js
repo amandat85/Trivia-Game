@@ -47,7 +47,8 @@ $(document).ready(function () {
             question: "Which is not a blue jay colour?",
             answers: ["Purple", "Brown", "White"],
             correct: "Brown",
-            funFact: "Blue jays communicate via loud screams and high-pitched calls. They are able to imitate sound of hawks, cats and humans.",audio: "assets/audio/bluejay.wav"
+            funFact: "Blue jays communicate via loud screams and high-pitched calls. They are able to imitate sound of hawks, cats and humans.",
+            audio: "assets/audio/bluejay.wav"
         },
         {
             question: "What is a baby puffin called?",
