@@ -99,7 +99,7 @@ $(document).ready(function () {
             $("#timer").hide();
             $("#question").hide();
             $("#answerAlert").show();
-            document.querySelector("#answerAlert").innerHTML = ("<p class='answersArea'>Time's Up! The correct answer is: <br><button>" + myQuestions[questionIndex].correct + "</button><br><br>Did you know?<br><br>" + myQuestions[questionIndex].funFact + "</p>");
+            document.querySelector("#answerAlert").innerHTML = ("<p class='answersArea'>Time's Up! The correct answer is: <br><button id='answer'>" + myQuestions[questionIndex].correct + "</button><br><br>Did you know?<br><br>" + myQuestions[questionIndex].funFact + "</p>");
             playSound();
             $("#answers").html("");
             setTimeout(loadQuestions, 5000);
@@ -140,7 +140,7 @@ $(document).ready(function () {
             $("#timer").hide();
             $("#question").hide();
             $("#answerAlert").show();
-            document.querySelector("#answerAlert").innerHTML = ("<p class='answersArea'>Excellent! <button>" + myQuestions[questionIndex].correct + "</button>is correct!<br><br>Did you know?<br><br>" + myQuestions[questionIndex].funFact + "</p>");
+            document.querySelector("#answerAlert").innerHTML = ("<p class='answersArea'>Excellent! <button id='answer'>" + myQuestions[questionIndex].correct + "</button>is correct!<br><br>Did you know?<br><br>" + myQuestions[questionIndex].funFact + "</p>");
             playSound();
             $("#answers").html("");
             setTimeout(loadQuestions, 5000);
@@ -152,7 +152,7 @@ $(document).ready(function () {
             $("#timer").hide();
             $("#question").hide();
             $("#answerAlert").show();
-            document.querySelector("#answerAlert").innerHTML = ("<p class='answersArea'>Sorry! The correct answer is: <br><button>" + myQuestions[questionIndex].correct + "</button><br><br>Did you know?<br><br>" + myQuestions[questionIndex].funFact + "</p>");
+            document.querySelector("#answerAlert").innerHTML = ("<p class='answersArea'>Sorry! The correct answer is: <br><button id='answer'>" + myQuestions[questionIndex].correct + "</button><br><br>Did you know?<br><br>" + myQuestions[questionIndex].funFact + "</p>");
             playSound();
             $("#answers").html("");
             setTimeout(loadQuestions, 5000);

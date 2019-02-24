@@ -70,7 +70,7 @@ p {
 .startImages {
     margin-top: 100px;
 }
-button, .buttonClicked {
+button, .buttonClicked, #answer {
     padding: 10px 25px 10px 25px;
     margin-top: 75px;
     margin-right: 10px;
