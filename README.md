@@ -1,14 +1,14 @@
 # Trivia-Game
-A timed Trivia Game based on JavaScript and jQuery.
+A timed Trivia Game based on JavaScript and jQuery. Includes audio clips.
 
 ## Site
 https://amandat85.github.io/Trivia-Game/
 
 ## Languages and Tools Used
-* HTML
+* HTML 5
+* CSS 3
 * Javascript
 * jQuery
-* CSS
 * Google Fonts
 * Media Queries
 
