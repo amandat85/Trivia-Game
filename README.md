@@ -2,7 +2,7 @@
 A timed Trivia Game based on JavaScript and jQuery. Includes audio clips.
 
 ## Site
-https://amandat85.github.io/Trivia-Game/
+https://amandatome.github.io/Trivia-Game/
 
 ## Languages and Tools Used
 * HTML 5
