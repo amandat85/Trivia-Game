@@ -5,7 +5,7 @@ $(document).ready(function () {
     var unanswered = 0;
     var number = 10;
     var questionIndex = 0;
-    var timer =0;
+    var timer = 0;
     //Question, Answer, and Answer Choices================================================================
     var myQuestions = [
         {
@@ -57,7 +57,8 @@ $(document).ready(function () {
             funFact: "A puffin’s beak (or bill) changes colour during the year. In winter, the beak has a dull grey colour, but in spring it blooms with an outrageous orange!",
             audio: "assets/audio/Puffin.wav",
         },
-        {   question: "How many stomachs do ostriches have?",
+        {
+            question: "How many stomachs do ostriches have?",
             answers: ["One", "Two", "Three"],
             correct: "Three",
             funFact: "The ostrich has the largest eye of any land animal, measuring almost 5 cm across, allowing predators such as lions to be seen at long distances.",
@@ -70,7 +71,8 @@ $(document).ready(function () {
             funFact: "Woodpeckers peck wood at a speed of 20 times per second.",
             audio: "assets/audio/woodpecker.mp3",
         },
-        {   question: "What is a hummingbird's average heartbeat?",
+        {
+            question: "What is a hummingbird's average heartbeat?",
             answers: ["1000 beats per minute", "1200 beats per minute", "1500 beats per minute"],
             correct: "1200 beats per minute",
             funFact: "A hummingbird’s wings beat between 50 and 200 flaps per second depending on the direction of flight, the purpose of their flight and the surrounding air conditions.",
@@ -95,14 +97,10 @@ $(document).ready(function () {
         number--;
         document.querySelector("#timer").innerHTML = ("Time Remaining: " + number);
         if (number === 0) {
-            clearInterval(timer);
-            $("#timer").hide();
-            $("#question").hide();
-            $("#answerAlert").show();
+            answersTime();
             document.querySelector("#answerAlert").innerHTML = ("<p class='answersArea'>Time's Up! The correct answer is: <br><button id='answer'>" + myQuestions[questionIndex].correct + "</button><br><br>Did you know?<br><br>" + myQuestions[questionIndex].funFact + "</p>");
             playSound();
-            $("#answers").html("");
-            setTimeout(loadQuestions, 5000);
+            timeout();
             unanswered++;
             questionIndex++;
         }
@@ -136,32 +134,24 @@ $(document).ready(function () {
     //CHECK ANSWERS==========================================================================================
     $("#answers").on("click", function (event) {
         if ($(event.target).attr("data-answer") === myQuestions[questionIndex].correct) {
-            clearInterval(timer);
-            $("#timer").hide();
-            $("#question").hide();
-            $("#answerAlert").show();
+            answersTime();
             document.querySelector("#answerAlert").innerHTML = ("<p class='answersArea'>Excellent! <button id='answer'>" + myQuestions[questionIndex].correct + "</button>is correct!<br><br>Did you know?<br><br>" + myQuestions[questionIndex].funFact + "</p>");
             playSound();
-            $("#answers").html("");
-            setTimeout(loadQuestions, 5000);
+            timeout();
             correctAnswers++;
             questionIndex++;
         }
         else {
-            clearInterval(timer);
-            $("#timer").hide();
-            $("#question").hide();
-            $("#answerAlert").show();
+            answersTime();
             document.querySelector("#answerAlert").innerHTML = ("<p class='answersArea'>Sorry! The correct answer is: <br><button id='answer'>" + myQuestions[questionIndex].correct + "</button><br><br>Did you know?<br><br>" + myQuestions[questionIndex].funFact + "</p>");
             playSound();
-            $("#answers").html("");
-            setTimeout(loadQuestions, 5000);
+            timeout();
             wrongAnswers++;
             questionIndex++;
         }
     });
     //PLAY AUDIO=============================================================================================
-    function playSound(){
+    function playSound() {
         var audio = document.createElement('audio');
         audio.style.display = "none";
         audio.src = myQuestions[questionIndex].audio;
@@ -169,11 +159,11 @@ $(document).ready(function () {
         setTimeout(() => {
             audio.pause();
         }, 5000);
-        audio.onended = function(){
-          audio.remove();
+        audio.onended = function () {
+            audio.remove();
         };
-        document.body.appendChild(audio);  
-      }
+        document.body.appendChild(audio);
+    }
     //RESULTS================================================================================================
     function results() {
         $("#results").show();
@@ -202,4 +192,16 @@ $(document).ready(function () {
         });
     }
     reset();
+
+    function answersTime() {
+        clearInterval(timer);
+        $("#timer").hide();
+        $("#question").hide();
+        $("#answerAlert").show();
+    }
+
+    function timeout() {
+        $("#answers").html("");
+        setTimeout(loadQuestions, 5000);
+    }
 });
