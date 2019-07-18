@@ -4,6 +4,9 @@ A timed Trivia Game based on JavaScript and jQuery. Includes audio clips.
 ## Site
 https://amandatome.github.io/Trivia-Game/
 
+## Homework Details
+[Homework Details](homework-instructions.md)
+
 ## Languages and Tools Used
 * HTML 5
 * CSS 3
